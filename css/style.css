@@ -1463,3 +1463,371 @@ h6 {
         font-size: 2rem;
     }
 }
+
+/* Contact Page Styles */
+.contact-info-wrapper {
+    padding-right: 30px;
+}
+
+.info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.info-card i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    background: rgba(239, 60, 15, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.info-content h4 {
+    margin: 0 0 5px;
+    font-size: 1.1rem;
+}
+
+.info-content p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.contact-form-wrapper {
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form .form-group label {
+    color: var(--dark-color);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.contact-form .form-control {
+    border: 1px solid #e1e1e1;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.contact-form .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(239, 60, 15, 0.1);
+}
+
+.submit-btn {
+    padding: 12px 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: 150px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+}
+
+.alert {
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.map-wrapper {
+    height: 450px;
+    margin-top: 50px;
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+}
+
+@media (max-width: 991px) {
+    .contact-info-wrapper {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form-wrapper {
+        padding: 25px;
+    }
+    
+    .info-card {
+        padding: 15px;
+    }
+}
+
+/* Enhanced Map Section Styles */
+.map-section {
+    position: relative;
+    padding: 100px 0;
+    background: #f8f9fa;
+}
+
+.map-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--secondary-color), transparent);
+}
+
+.map-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.map-wrapper {
+    position: relative;
+    height: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.map-wrapper:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.map-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    z-index: 1;
+}
+
+.map-overlay h3 {
+    color: var(--dark-color);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.map-overlay p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .map-section {
+        padding: 60px 0;
+    }
+
+    .map-wrapper {
+        height: 400px;
+    }
+
+    .map-overlay {
+        position: relative;
+        top: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: none;
+        margin-bottom: -40px;
+    }
+}
+
+/* Equipment Page Specific Styles */
+.equipment-filters-section {
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.equipment-filters {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.equipment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.category {
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.inquiry-btn {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.inquiry-btn:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Equipment Grid Animation */
+.equipment-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Equipment Filter Animations */
+[data-category] {
+    transition: all 0.5s ease-in-out;
+}
+
+[data-category].fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[data-category]:not(.fade-in) {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.equipment-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-in-out;
+}
+
+.equipment-card.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Training Preview Section Styles */
+.training-preview-section {
+    background: #f8f9fa;
+}
+
+.program-card {
+    height: 100%;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.program-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* CTA Section Styles */
+.cta-section {
+    position: relative;
+    padding: 100px 0;
+}
+
+.cta-section .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.cta-section .btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .cta-section h2 {
+        font-size: 2rem;
+    }
+    
+    .cta-section p {
+        font-size: 1rem;
+    }
+    
+    .cta-section .btn-primary {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+/* CTA Section Styles */
+.cta-section {
+    position: relative;
+    padding: 100px 0;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--primary-color);
+    opacity: 0.1;
+}
