@@ -10,19 +10,24 @@ window.addEventListener('DOMContentLoaded', (event) => {
         measurementId: "G-24W32Z7JZE"
     };
 
-    // Initialize Firebase
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
+    // Initialize Firebase immediately
+    firebase.initializeApp(firebaseConfig);
+
+    // Initialize Firestore
     const db = firebase.firestore();
 
-    // Enable persistance to handle offline scenarios
+    // Configure cache settings
+    db.settings({
+        cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
+    });
+
+    // Enable offline persistence
     db.enablePersistence()
         .catch((err) => {
             if (err.code == 'failed-precondition') {
-                console.log('Persistence failed');
+                console.log('Multiple tabs open, persistence can only be enabled in one tab at a time.');
             } else if (err.code == 'unimplemented') {
-                console.log('Persistence not available');
+                console.log('The current browser does not support persistence.');
             }
         });
 });
