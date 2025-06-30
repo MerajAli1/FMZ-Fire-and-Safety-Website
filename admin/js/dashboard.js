@@ -25,16 +25,54 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Format date
         function formatDate(timestamp) {
-            return new Date(timestamp).toLocaleDateString('en-US', {
+            // Support both Firestore Timestamp and JS timestamp
+            if (!timestamp) return '';
+            let dateObj;
+            if (typeof timestamp === 'object' && timestamp.seconds) {
+                // Firestore Timestamp object
+                dateObj = new Date(timestamp.seconds * 1000);
+            } else if (typeof timestamp === 'number' || typeof timestamp === 'string') {
+                dateObj = new Date(Number(timestamp));
+            } else {
+                return '';
+            }
+            return dateObj.toLocaleString('en-US', {
                 year: 'numeric',
                 month: 'short',
-                day: 'numeric',
+                day: '2-digit',
                 hour: '2-digit',
                 minute: '2-digit'
             });
         }
 
+        // Send email (simulated)
+        // window.sendEmailToContact = async function(id, email, name, status) {
+        //     if (status === 'email_sent') return;
+        //     showLoader();
+        //     try {
+        //         // Simulate email sending delay
+        //         await new Promise(res => setTimeout(res, 1200));
+                
+        //         // Here you would call your backend/email API to send the email
+
+        //         // On success, update status in Firestore
+        //         await db.collection('contacts').doc(id).update({ status: 'email_sent' });
+        //         Swal.fire('Success', `Email sent to ${email}`, 'success');
+        //         loadSubmissions();
+        //     } catch (err) {
+        //         Swal.fire('Error', 'Failed to send email.', 'error');
+        //     }
+        //     hideLoader();
+        // };
+         // <button onclick="sendEmailToContact('${doc.id}', '${data.email}', '${data.name}', '${status}')" 
+                            //     class="btn btn-sm btn-warning action-btn" 
+                            //     ${isEmailSent ? 'disabled' : ''} 
+                            //     title="Send Email">
+                            //     <i class="fas fa-envelope"></i>
+                            // </button>
+
         // Load submissions
+       
         async function loadSubmissions() {
             showLoader();
             try {
@@ -46,6 +84,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                 
                 snapshot.forEach(doc => {
                     const data = doc.data();
+                    const status = data.status || 'new';
+                    const isEmailSent = status === 'email_sent';
                     const row = document.createElement('tr');
                     row.innerHTML = `
                         <td>${formatDate(data.timestamp)}</td>
@@ -53,15 +93,16 @@ document.addEventListener('DOMContentLoaded', async function() {
                         <td>${data.email}</td>
                         <td>${data.phone}</td>
                         <td>${data.subject}</td>
-                        <td><span class="status-badge status-${data.status || 'new'}">${data.status || 'new'}</span></td>
+                        <td><span class="status-badge status-${status}">${status.replace('_', ' ')}</span></td>
                         <td>
-                            <button onclick="viewSubmission('${doc.id}')" class="btn btn-sm btn-primary action-btn">
+                            <button onclick="viewSubmission('${doc.id}')" class="btn btn-sm btn-primary action-btn" title="View">
                                 <i class="fas fa-eye"></i>
                             </button>
-                            <button onclick="updateStatus('${doc.id}', '${data.status}')" class="btn btn-sm btn-success action-btn">
+                           
+                            <button onclick="updateStatus('${doc.id}', '${status}')" class="btn btn-sm btn-success action-btn" title="Toggle Status">
                                 <i class="fas fa-check"></i>
                             </button>
-                            <button onclick="deleteSubmission('${doc.id}')" class="btn btn-sm btn-danger action-btn">
+                            <button onclick="deleteSubmission('${doc.id}')" class="btn btn-sm btn-danger action-btn" title="Delete">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
@@ -88,6 +129,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                                 <p><strong>Email:</strong> ${data.email}</p>
                                 <p><strong>Phone:</strong> ${data.phone}</p>
                                 <p><strong>Subject:</strong> ${data.subject}</p>
+                                <p><strong>Status:</strong> ${data.status}</p>
                                 <p><strong>Message:</strong></p>
                                 <p>${data.message}</p>
                                 <p><strong>Date:</strong> ${formatDate(data.timestamp)}</p>
@@ -119,12 +161,13 @@ document.addEventListener('DOMContentLoaded', async function() {
         window.deleteSubmission = function(id) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "This action cannot be undone!",
+                text: "This will permanently delete the contact submission.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 cancelButtonColor: '#3085d6',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Yes, delete it!',
+                reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
                     db.collection('contacts').doc(id).delete()
@@ -162,4 +205,12 @@ document.addEventListener('DOMContentLoaded', async function() {
             text: 'Failed to initialize Firebase. Please check your configuration.'
         });
     }
+
+    // Optional: Add logout logic if you add a logout button
+    window.fmzAdminLogout = function() {
+        firebase.auth().signOut().then(() => {
+            sessionStorage.removeItem('fmz_admin_logged_in');
+            window.location.href = "admin-login.html";
+        });
+    };
 });
