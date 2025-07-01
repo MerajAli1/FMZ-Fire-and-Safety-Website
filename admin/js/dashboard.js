@@ -15,12 +15,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Show loader
         function showLoader() {
-            loader.style.display = 'block';
+            if (loader) loader.style.display = 'flex';
         }
 
         // Hide loader
         function hideLoader() {
-            loader.style.display = 'none';
+            if (loader) loader.style.display = 'none';
         }
 
         // Format date
