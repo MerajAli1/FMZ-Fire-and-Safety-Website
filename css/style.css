@@ -12,7 +12,9 @@ body {
     line-height: 1.6;
 }
 
-/* NAVBAR STYLING STARTS HERE*/
+/* NAVBAR STYLING STARTS HERE */
+
+/* 1. Base Navbar Structure */
 .custom-navbar {
     background: var(--dark-color) !important;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
@@ -20,11 +22,39 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Ensure the container inside navbar doesn't wrap its items */
+.custom-navbar .container {
+    display: flex;
+    flex-wrap: nowrap !important; /* CRITICAL: Prevents hamburger drop */
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* 2. Brand & Logo Styling */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduced gap slightly to save space */
+    max-width: 85%; /* Leaves space for the hamburger button */
+}
+
 .navbar-brand img {
     height: 45px;
+    width: auto;
+    flex-shrink: 0; /* Prevents logo from squishing */
     transition: all 0.3s ease;
 }
 
+.brand-text {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    white-space: nowrap; /* Keeps text on one line */
+    /* REMOVED ellipsis (...) logic as requested */
+    transition: all 0.3s ease;
+}
+
+/* 3. Navigation Links Styling */
 .nav-item {
     margin: 0 10px;
     position: relative;
@@ -34,6 +64,7 @@ body {
     color: #fff !important;
     font-family: var(--body-font);
     font-weight: 500;
+    white-space: nowrap;
     transition: all 0.3s ease;
 }
 
@@ -41,6 +72,7 @@ body {
     color: var(--secondary-color) !important;
 }
 
+/* Underline Effect */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -56,6 +88,51 @@ body {
     width: 100%;
 }
 
+/* 4. Scrolled State (White Background) */
+.navbar-scrolled {
+    background: #ffffff !important;
+    padding: 10px 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-scrolled .navbar-brand img {
+    height: 40px; /* Logo shrinks slightly when scrolled */
+}
+
+.navbar-scrolled .brand-text {
+    color: #4655A7 !important;
+}
+
+.navbar-scrolled .nav-link {
+    color: var(--dark-color) !important;
+}
+
+.navbar-scrolled .nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+.navbar-scrolled .nav-link::after {
+    background-color: var(--primary-color);
+}
+
+/* 5. Hamburger Menu Styling */
+.navbar-toggler {
+    border: 2px solid var(--secondary-color);
+    padding: 4px 8px;
+    border-radius: 5px;
+    flex-shrink: 0; /* Prevents button from being crushed */
+    margin-left: 5px; /* Adds a tiny buffer between text and button */
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(246, 161, 11, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(246, 161, 11, 0.25);
+}
+
+/* 6. Dropdown Menu Styling */
 .dropdown-menu {
     border: none;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -72,72 +149,97 @@ body {
     color: #007bff;
 }
 
-/* Navbar Scroll Effect */
-.navbar-scrolled {
-    background: #ffffff !important;
-    padding: 10px 0;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-}
+/* --- RESPONSIVENESS --- */
 
-.navbar-scrolled .navbar-brand img {
-    height: 40px;
-}
+/* Triggers Mobile Menu at 1200px */
+@media (max-width: 1200px) {
+    .navbar-expand-lg .navbar-toggler {
+        display: block !important;
+    }
+    
+    .navbar-expand-lg .navbar-collapse {
+        display: none !important;
+        flex-basis: 100%;
+        flex-grow: 1;
+    }
 
-.navbar-scrolled .nav-link {
-    color: var(--dark-color) !important;
-}
+    .navbar-expand-lg .navbar-collapse.show {
+        display: block !important;
+    }
 
-.navbar-scrolled .nav-link:hover {
-    color: var(--primary-color) !important;
-}
+    .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+    }
 
-.navbar-scrolled .nav-link::after {
-    background-color: var(--primary-color);
-}
-
-/* Hamburger Menu Styling */
-.navbar-toggler {
-    border: 2px solid var(--secondary-color);
-    padding: 8px;
-    border-radius: 5px;
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(246, 161, 11, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-}
-
-.navbar-toggler:focus {
-    box-shadow: 0 0 0 3px rgba(246, 161, 11, 0.25);
-}
-
-@media (max-width: 991px) {
+    /* Mobile Menu Container */
     .navbar-collapse {
         background: var(--dark-color);
-        padding: 15px;
+        padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        margin-top: 10px;
+        margin-top: 15px;
+        border: 1px solid rgba(255,255,255,0.1);
+        position: absolute; 
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .navbar-scrolled .navbar-collapse {
         background: #ffffff;
+        border: 1px solid rgba(0,0,0,0.05);
     }
-
-    .navbar-scrolled .nav-link {
-        color: var(--dark-color) !important;
-    }
-
+    
     .nav-item {
-        margin: 5px 0;
+        margin: 8px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-
-    .navbar-toggler {
-        margin-right: 10px;
+    
+    .navbar-scrolled .nav-item {
+        border-bottom: 1px solid rgba(0,0,0,0.05);
     }
 }
 
-/* NAVBAR STYLING ENDS HERE*/
+/* === CRITICAL FIXES FOR SMALL SCREENS === */
 
+/* Tablets & Large Phones (Max 768px) */
+@media (max-width: 768px) {
+    .brand-text {
+        font-size: 0.95rem; /* Scale text down */
+    }
+    .navbar-brand img {
+        height: 40px; /* Scale logo down */
+    }
+}
+
+/* Mobile Phones (Max 576px) */
+@media (max-width: 576px) {
+    .brand-text {
+        font-size: 0.8rem; /* Significant text shrink */
+    }
+    .navbar-brand img {
+        height: 35px; /* Significant logo shrink */
+    }
+    .navbar-brand {
+        gap: 5px; /* Tighter gap */
+    }
+}
+
+/* Very Small Phones (Max 380px) - The "iPhone SE" Fix */
+@media (max-width: 380px) {
+    .brand-text {
+        font-size: 0.7rem; /* Tiny text to fit line */
+    }
+    .navbar-brand img {
+        height: 30px; /* Tiny logo to fit line */
+    }
+}
+
+/* NAVBAR STYLING ENDS HERE */
 /* Carousel Styling STARTS HERE */
 #heroCarousel {
     margin-top: 76px;
