@@ -8,7 +8,9 @@ import {
 import {
   esc, icon, $, $$, assetUrl, toast, openModal, confirmDialog, setBusy, friendlyError, debounce, formatDate,
 } from './ui.js';
-import { buildForm } from './form.js';
+import {
+  buildForm, categoryControl, categoryOptions, bindCategoryControls, readCategory,
+} from './form.js';
 import { processAndUpload } from './upload.js';
 import { SCHEMAS } from './schemas.js';
 import { categoryLabel } from '../../js/lib/dom.js';
@@ -43,7 +45,8 @@ export function renderCollection(container, key) {
     <div data-notice></div>
     <div class="toolbar">
       <label class="search-input"><span class="sr-only">Search</span>${icon('search')}<input class="input" type="search" placeholder="Search ${esc(schema.title.toLowerCase())}…" data-search></label>
-      ${schema.filterField ? '<select class="select" style="width:auto" data-cat aria-label="Filter by category"></select>' : ''}
+      ${schema.filterField ? `<select class="select" style="width:auto" data-cat aria-label="Filter by category"></select>
+        <button class="btn btn--secondary" data-action="rename-category" hidden title="Rename this category, or merge it into another one">${icon('pencil', 'icon--sm')} Rename / merge</button>` : ''}
       <div class="tabs" role="tablist" data-status>
         <button class="tab is-active" data-v="all">All <span class="count" data-count="all"></span></button>
         <button class="tab" data-v="published">Visible <span class="count" data-count="published"></span></button>
@@ -126,9 +129,12 @@ export function renderCollection(container, key) {
     Object.entries(counts).forEach(([k, n]) => { $(`[data-count="${k}"]`, container).textContent = n; });
 
     if (catEl) {
-      const cats = [...new Set(state.items.map((i) => i[schema.filterField]).filter(Boolean))].sort();
+      const cats = [...new Set(state.items.map((i) => i[schema.filterField]).filter(Boolean))]
+        .sort((a, b) => categoryLabel(a).localeCompare(categoryLabel(b)));
       const current = state.cat;
-      catEl.innerHTML = `<option value="all">All categories</option>${cats.map((c) => `<option value="${esc(c)}" ${c === current ? 'selected' : ''}>${esc(categoryLabel(c))}</option>`).join('')}`;
+      if (current !== 'all' && !cats.includes(current)) state.cat = 'all';
+      catEl.innerHTML = `<option value="all">All categories</option>${cats.map((c) => `<option value="${esc(c)}" ${c === state.cat ? 'selected' : ''}>${esc(categoryLabel(c))} (${state.items.filter((i) => i[schema.filterField] === c).length})</option>`).join('')}`;
+      $('[data-action="rename-category"]', container).hidden = state.cat === 'all';
     }
 
     if (!state.items.length) {
@@ -180,10 +186,56 @@ export function renderCollection(container, key) {
     getDoc(doc(db, 'settings', 'site')).then((s) => { state.settings = s.data() || {}; render(); }).catch(() => {});
   }
 
+  /* ---------- Categories ---------- */
+  const catFields = schema.fields.filter((f) => f.type === 'category');
+  const usedCategories = (name) => [...new Set(state.items.map((i) => i[name]).filter(Boolean))];
+
+  function renameCategory() {
+    const from = state.cat;
+    const field = schema.filterField;
+    const count = state.items.filter((i) => i[field] === from).length;
+    const def = catFields.find((f) => f.name === field);
+    const options = categoryOptions(def?.suggestions, usedCategories(field)).filter((c) => c !== from);
+    const body = document.createElement('div');
+    body.innerHTML = `
+      <p>Move all <strong>${count}</strong> item${count === 1 ? '' : 's'} in <strong>${esc(categoryLabel(from))}</strong> to:</p>
+      <div class="field">${categoryControl({ id: 'rename-cat', name: 'to', options })}</div>
+      <p class="field__help" style="margin-top:12px">Choose an existing category to merge duplicates (e.g. “Personal Safety” into “Personal Protection”), or add a new name to rename it.</p>`;
+    bindCategoryControls(body);
+    const m = openModal({
+      title: 'Rename or merge category',
+      body,
+      footer: `<button type="button" class="btn btn--secondary" data-close>Cancel</button>
+               <button type="button" class="btn" data-ok>${icon('check')} Apply</button>`,
+    });
+    $('[data-ok]', m.el).addEventListener('click', async (e) => {
+      const to = readCategory($('#rename-cat', body));
+      if (!to) return toast('Please choose or enter a category', 'error');
+      if (to === from) return m.close();
+      const btn = e.currentTarget;
+      setBusy(btn, true);
+      try {
+        const ids = state.items.filter((i) => i[field] === from).map((i) => i.id);
+        for (let n = 0; n < ids.length; n += 400) {
+          const batch = writeBatch(db);
+          ids.slice(n, n + 400).forEach((id) => batch.update(doc(db, schema.collection, id), { [field]: to, ...stamp() }));
+          await batch.commit();
+        }
+        state.cat = to;
+        toast(`Moved ${ids.length} item${ids.length === 1 ? '' : 's'} to “${categoryLabel(to)}”`);
+        m.close();
+      } catch (err) {
+        toast(friendlyError(err), 'error', 7000);
+        setBusy(btn, false);
+      }
+    });
+  }
+
   /* ---------- Actions ---------- */
   function openEditor(item = null) {
     const isNew = !item;
-    const f = buildForm(schema.fields, item || {});
+    const categories = Object.fromEntries(catFields.map((cf) => [cf.name, usedCategories(cf.name)]));
+    const f = buildForm(schema.fields, item || {}, { categories });
     const m = openModal({
       title: isNew ? `Add ${schema.singular}` : `Edit ${schema.singular}`,
       size: 'lg',
@@ -292,8 +344,7 @@ export function renderCollection(container, key) {
     body.innerHTML = `
       <div class="form-grid" style="margin-bottom:14px">
         <div class="field"><label for="bu-cat">Album / category</label>
-          <input class="input" id="bu-cat" list="bu-cat-list" placeholder="e.g. training" autocomplete="off">
-          <datalist id="bu-cat-list">${(catField?.suggestions || []).map((s) => `<option value="${s}">`).join('')}</datalist></div>
+          ${categoryControl({ id: 'bu-cat', name: 'category', options: categoryOptions(catField?.suggestions, usedCategories('category')) })}</div>
         <div class="field"><label for="bu-cap">Caption (optional, applied to all)</label><input class="input" id="bu-cap" maxlength="160"></div>
       </div>
       <div class="dropzone">
@@ -309,6 +360,7 @@ export function renderCollection(container, key) {
       body,
       footer: '<button type="button" class="btn btn--secondary" data-close>Done</button>',
     });
+    bindCategoryControls(body);
     const listBox = $('.upload-list', body);
     const drop = $('.dropzone', body);
     const input = $('input[type=file]', drop);
@@ -317,7 +369,7 @@ export function renderCollection(container, key) {
     async function run(files) {
       const images = Array.from(files).filter((f) => f.type.startsWith('image/'));
       if (!images.length) return;
-      const category = $('#bu-cat', body).value.trim().toLowerCase().replace(/\s+/g, '-');
+      const category = readCategory($('#bu-cat', body));
       const caption = $('#bu-cap', body).value.trim();
       running += images.length;
       m.lock(true);
@@ -380,6 +432,7 @@ export function renderCollection(container, key) {
       case 'delete': remove([item.id]); break;
       case 'import-clients': importClients(btn); break;
       case 'import-trainings': importTrainings(btn); break;
+      case 'rename-category': renameCategory(); break;
       default: break;
     }
   };

@@ -246,9 +246,14 @@ a.stat-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -12px r
 .select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .6rem center; background-size: 16px; padding-right: 2rem; }
 .has-error .input, .has-error .textarea, .has-error .select { border-color: #dc2626; }
 
-.switch { display: flex; align-items: center; gap: .7rem; cursor: pointer; user-select: none; font-weight: 500; font-size: .88rem; color: var(--ink); }
+.switch { position: relative; display: flex; align-items: center; gap: .7rem; cursor: pointer; user-select: none; font-weight: 500; font-size: .88rem; color: var(--ink); }
 .switch input { position: absolute; opacity: 0; width: 0; height: 0; }
-.switch__track { width: 40px; height: 22px; border-radius: 999px; background: #cbd5e1; position: relative; transition: background-color .2s; flex-shrink: 0; }
+.field .switch {
+  display: flex; margin: 0; padding: .65rem .8rem; border: 1px solid var(--line); border-radius: 9px; background: #fafbfc;
+  font-weight: 600; font-size: .86rem; transition: border-color .15s, background-color .15s;
+}
+.field .switch:hover { border-color: #cbd5e1; background: #fff; }
+.switch__track { display: inline-block; width: 40px; height: 22px; border-radius: 999px; background: #cbd5e1; position: relative; transition: background-color .2s; flex-shrink: 0; }
 .switch__track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.2); transition: transform .2s; }
 .switch input:checked + .switch__track { background: var(--green); }
 .switch input:checked + .switch__track::after { transform: translateX(18px); }

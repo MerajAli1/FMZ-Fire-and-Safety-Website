@@ -1,13 +1,64 @@
 /** Schema-driven form builder used by the content manager. */
 import { esc, icon, assetUrl, toast } from './ui.js';
 import { processAndUpload } from './upload.js';
-import { categoryLabel } from '../../js/lib/dom.js';
+import { categoryLabel, slugify } from '../../js/lib/dom.js';
 
 let uid = 0;
 
 function fieldId(name) { uid += 1; return `f-${name}-${uid}`; }
 
-function renderField(f, value) {
+/* ---------- Category picker: dropdown of existing categories + "add new" ---------- */
+const NEW_CATEGORY = '__new__';
+
+/** Merge predefined suggestions with categories already in use, de-duplicated and sorted by label. */
+export function categoryOptions(suggestions = [], existing = [], current = '') {
+  const all = [...suggestions, ...existing, current].map((c) => slugify(c)).filter(Boolean);
+  return [...new Set(all)].sort((a, b) => categoryLabel(a).localeCompare(categoryLabel(b)));
+}
+
+export function categoryControl({ id, name, options, value = '' }) {
+  const v = slugify(value);
+  return `
+    <select class="select" id="${id}" name="${name}" data-category>
+      <option value="">Select a category…</option>
+      ${options.map((c) => `<option value="${esc(c)}" ${c === v ? 'selected' : ''}>${esc(categoryLabel(c))}</option>`).join('')}
+      <option value="${NEW_CATEGORY}">＋ Add new category…</option>
+    </select>
+    <input class="input" data-category-new maxlength="40" placeholder="New category name, e.g. Fire Alarms" hidden style="margin-top:8px" aria-label="New category name">
+    <div class="field__help" data-category-hint hidden></div>`;
+}
+
+/** Wire up every category picker inside root. */
+export function bindCategoryControls(root) {
+  root.querySelectorAll('select[data-category]').forEach((select) => {
+    const box = select.parentElement;
+    const input = box.querySelector('[data-category-new]');
+    const hint = box.querySelector('[data-category-hint]');
+    select.addEventListener('change', () => {
+      const isNew = select.value === NEW_CATEGORY;
+      input.hidden = !isNew;
+      hint.hidden = true;
+      if (isNew) input.focus();
+    });
+    // If the "new" name matches an existing category, select that one instead of creating a duplicate.
+    input.addEventListener('input', () => {
+      const slug = slugify(input.value);
+      const match = [...select.options].find((o) => o.value !== NEW_CATEGORY && o.value
+        && (o.value === slug || o.textContent.trim().toLowerCase() === input.value.trim().toLowerCase()));
+      hint.hidden = !match;
+      if (match) hint.textContent = `“${match.textContent.trim()}” already exists — it will be used instead of creating a duplicate.`;
+    });
+  });
+}
+
+/** Read the chosen category slug from a picker's <select>. */
+export function readCategory(select) {
+  if (!select) return '';
+  if (select.value !== NEW_CATEGORY) return select.value;
+  return slugify(select.parentElement.querySelector('[data-category-new]').value);
+}
+
+function renderField(f, value, ctx = {}) {
   const id = fieldId(f.name);
   const req = f.required ? ' <span class="req">*</span>' : '';
   const help = f.help ? `<div class="field__help">${esc(f.help)}</div>` : '';
@@ -28,8 +79,10 @@ function renderField(f, value) {
     case 'url':
       return wrap(`<input class="input" type="url" id="${id}" name="${f.name}" value="${esc(v)}" placeholder="https://">`);
     case 'category':
-      return wrap(`<input class="input" id="${id}" name="${f.name}" value="${esc(v)}" list="${id}-list" autocomplete="off" placeholder="${esc(f.placeholder || 'Choose or type a category')}">
-        <datalist id="${id}-list">${(f.suggestions || []).map((s) => `<option value="${esc(s)}">${esc(categoryLabel(s))}</option>`).join('')}</datalist>`);
+      return wrap(categoryControl({
+        id, name: f.name, value: v,
+        options: categoryOptions(f.suggestions, ctx.categories?.[f.name], v),
+      }));
     case 'select':
       return wrap(`<select class="select" id="${id}" name="${f.name}">${f.options.map(([val, label]) => `<option value="${esc(val)}" ${String(v) === String(val) ? 'selected' : ''}>${esc(label)}</option>`).join('')}</select>`);
     case 'toggle': {
@@ -123,13 +176,15 @@ function setupImageField(root, f, state) {
 
 /**
  * Build a form for `fields` filled with `values`.
+ * `ctx.categories` maps a category field name to the categories already in use.
  * Returns { form, getValues, validate, isUploading, onUploadChange }.
  */
-export function buildForm(fields, values = {}) {
+export function buildForm(fields, values = {}, ctx = {}) {
   const form = document.createElement('form');
   form.className = 'form-grid';
   form.noValidate = true;
-  form.innerHTML = fields.map((f) => renderField(f, values[f.name])).join('');
+  form.innerHTML = fields.map((f) => renderField(f, values[f.name], ctx)).join('');
+  bindCategoryControls(form);
   const state = { uploading: 0, onChange: null };
 
   fields.filter((f) => f.type === 'image').forEach((f) => {
@@ -144,7 +199,7 @@ export function buildForm(fields, values = {}) {
       else if (f.type === 'icon') out[f.name] = form.querySelector(`input[name="${f.name}"]:checked`)?.value || f.default || '';
       else if (f.type === 'number') out[f.name] = el.value === '' ? null : Number(el.value);
       else if (f.type === 'list') out[f.name] = el.value.split('\n').map((s) => s.trim()).filter(Boolean);
-      else if (f.type === 'category') out[f.name] = el.value.trim().toLowerCase().replace(/\s+/g, '-');
+      else if (f.type === 'category') out[f.name] = readCategory(el);
       else if (f.type === 'select' && f.number) out[f.name] = Number(el.value);
       else out[f.name] = el.value.trim();
     });
