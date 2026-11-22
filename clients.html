@@ -1,306 +1,221 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-    <!-- Same head as index.html -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Our Valued Clients - FMZ</title>
-    <link rel="icon" href="./assets/fmz-Logo-design.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Clients | FMZ Fire &amp; Safety Engineering</title>
+  <meta name="description" content="FMZ Fire & Safety Engineering is trusted by leading organisations in automotive, textile, education, banking, pharmaceutical and FMCG sectors.">
+  <meta name="theme-color" content="#0b1f3a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FMZ Fire &amp; Safety Engineering">
+  <meta property="og:title" content="Our Clients | FMZ Fire &amp; Safety Engineering">
+  <meta property="og:description" content="FMZ Fire & Safety Engineering is trusted by leading organisations in automotive, textile, education, banking, pharmaceutical and FMCG sectors.">
+  <link rel="icon" href="assets/img/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="https://res.cloudinary.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script type="module" src="js/pages/clients.js"></script>
 </head>
+<body data-page="clients">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="announcement" class="announcement" role="status" hidden></div>
 
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
-        <div class="container">
-             <a class="navbar-brand" href="#">
-                    <img src="./assets/fmz-logo.png" alt="FMZ Logo">
-                    <span class="brand-text">Fire, Safety Engineering</span>
-                </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./training.html">Safety Training</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./equipments.html">Safety Equipments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./clients.html">Our Clients</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./contact.html">Contact</a>
-                    </li>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar__info">
+        <a data-href="tel" href="tel:+923452008861"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg><span data-setting="phone">+92 345 2008861</span></a>
+        <a data-href="mailto" href="mailto:info@fmz.com"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg><span data-setting="email">info@fmz.com</span></a>
+        <span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-setting="hours">Mon – Sat: 9:00 AM – 6:00 PM</span></span>
+      </div>
+      <div class="topbar__social">
+        <a data-social="facebook" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook"></use></svg></a>
+        <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
+        <a data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram"></use></svg></a>
+        <a data-social="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube"></use></svg></a>
+      </div>
+    </div>
+  </div>
 
-                </ul>
-            </div>
+  <header class="header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="FMZ Fire &amp; Safety Engineering — home">
+        <img src="assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="129" height="46">
+      </a>
+      <nav id="site-nav" class="nav" aria-label="Main">
+        <button class="nav-close" type="button" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#x"></use></svg></button>
+        <a class="nav__link" data-page="home" href="index.html">Home</a>
+        <a class="nav__link" data-page="about" href="about.html">About</a>
+        <a class="nav__link" data-page="training" href="training.html">Training</a>
+        <a class="nav__link" data-page="equipment" href="equipments.html">Equipment</a>
+        <a class="nav__link" data-page="clients" href="clients.html">Clients</a>
+        <a class="nav__link" data-page="gallery" href="gallery.html">Gallery</a>
+        <a class="nav__link" data-page="contact" href="contact.html">Contact</a>
+        <div class="nav__mobile-extra">
+          <a class="btn btn--block" href="contact.html">Get a free quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+          <a class="btn btn--whatsapp btn--block" data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg> Chat on WhatsApp</a>
         </div>
-    </nav>
-    <!-- Navbar -->
-
-    <!-- Clients Page Hero -->
+      </nav>
+      <a class="btn btn--sm header__cta" href="contact.html">Get a Quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#menu"></use></svg></button>
+    </div>
+  </header>
+  <div class="nav-backdrop"></div>
+  <main id="main">
     <section class="page-hero">
-        <div class="container">
-            <h1>Our Valued Clients</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Our Clients</li>
-                </ol>
-            </nav>
-        </div>
+      <img class="page-hero__bg" src="assets/img/hero-1-960.webp" srcset="assets/img/hero-1-960.webp 960w, assets/img/hero-1.webp 1920w" sizes="100vw" alt="" fetchpriority="high">
+      <div class="container">
+        <h1>Our valued clients</h1>
+        <p>Leading organisations across Pakistan trust FMZ with the safety of their people and premises.</p>
+        <nav aria-label="Breadcrumb"><ol class="breadcrumb"><li><a href="index.html">Home</a></li><li aria-current="page">Clients</li></ol></nav>
+      </div>
     </section>
 
-    <!-- Full Clients List -->
-    <section class="clients-section clients-page py-5">
-        <div class="container">
-            <div class="row g-4">
-                <!-- Client filters -->
-                <div class="col-12 mb-4">
-                    <div class="client-filters">
-                        <button class="filter-btn active" data-filter="all">All Industries</button>
-                        <button class="filter-btn" data-filter="automotive">Automotive</button>
-                        <button class="filter-btn" data-filter="textile">Textile</button>
-                        <button class="filter-btn" data-filter="education">Education</button>
-                        <button class="filter-btn" data-filter="banking">Banking</button>
-                        <button class="filter-btn" data-filter="pharma">Pharmaceutical</button>
-                    </div>
-                </div>
-
-                <!-- Clients Grid -->
-                <div class="col-12">
-                    <div class="client-grid extended">
-                        <!-- Automotive Industry -->
-                        <div class="client-card" data-industry="automotive">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/toyota-indus.png" alt="Indus Motor Company">
-                                </div>
-                            </div>
-                            <h4>Indus Motor Company</h4>
-                            <p>Port Qasim</p>
-                        </div>
-
-                        <!-- Education Industry -->
-                        <div class="client-card" data-industry="education">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/iqra-uni-logo.png" alt="Iqra University">
-                                </div>
-                            </div>
-                            <h4>Iqra University</h4>
-                            <p>Karachi</p>
-                        </div>
-
-                        <!-- Banking Industry -->
-                        <div class="client-card" data-industry="banking">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/meezan-bank-logo.png" alt="Meezan Bank">
-                                </div>
-                            </div>
-                            <h4>Meezan Bank</h4>
-                            <p>Pakistan</p>
-                        </div>
-
-                        <!-- Pharmaceutical Industry -->
-                        <div class="client-card" data-industry="pharma">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/hilton-pharma-logo.png" alt="Hilton Pharma">
-                                </div>
-                            </div>
-                            <h4>Hilton Pharma</h4>
-                            <p>Karachi</p>
-                        </div>
-
-                        <!-- FMCG Industry -->
-                        <div class="client-card" data-industry="fmcg">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/Nestle-Logo.png" alt="Nestle Pakistan">
-                                </div>
-                            </div>
-                            <h4>NESTLE PAKISTAN</h4>
-                            <p>Karachi</p>
-                        </div>
-
-                        <!-- Textile Industry -->
-                        <div class="client-card" data-industry="textile">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/younus-textile-logo.jpg" alt="Younus Textile Mills">
-                                </div>
-                            </div>
-                            <h4>YOUNUS TEXTILE MILLS</h4>
-                            <p>Group of Companies</p>
-                        </div>
-                        <div class="client-card" data-industry="textile">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/al-rahem-logo.jpg" alt="">
-                                </div>
-                            </div>
-                            <h4>Al Rahim Textile</h4>
-                            <p>Karachi</p>
-                        </div>
-                        <div class="client-card" data-industry="textile">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/olampiya-logo.jpg" alt="">
-                                </div>
-                            </div>
-                            <h4>Olympia Groups of Companies</h4>
-                            <p>Group of Companies</p>
-                        </div>
-                        <div class="client-card" data-industry="textile">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/grace-apperals-logo.jfif" alt="">
-                                </div>
-                            </div>
-                            <h4>Grace Apperal PVT LTD</h4>
-                            <p>Karachi</p>
-                        </div>
-                        <div class="client-card" data-industry="textile">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/bin-qasim-logo.png" alt="Client Name">
-                                </div>
-                            </div>
-                            <h4>Bin Qasim Packages</h4>
-                            <p>Karachi</p>
-                        </div>
-                        <div class="client-card" data-industry="textile">
-                            <div class="client-logo-box">
-                                <div class="logo-placeholder">
-                                    <img width="100%" src="./assets/lucky-textile-logo.png" alt="">
-                                </div>
-                            </div>
-                            <h4>Lucky Textile Mills</h4>
-                            <p>Karachi</p>
-                        </div>
-                        <div class="client-card " data-industry="education">
-                            <div class="client-logo-box ">
-                                <div class="logo-placeholder text-dark">
-                                    <img width="100%" src="./assets/city-school-logo.svg" alt="">
-                                </div>
-                            </div>
-                            <h4>City School</h4>
-                            <p>Karachi</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section">
+      <div class="container">
+        <div class="toolbar">
+          <div class="chips" id="client-filters" role="group" aria-label="Filter by industry"></div>
+          <label class="search"><span class="sr-only">Search clients</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#search"></use></svg><input id="client-search" type="search" placeholder="Search clients…" autocomplete="off"></label>
+        </div>
+        <p class="results-note" id="client-note" hidden></p>
+        <div class="client-grid" id="clients-grid" aria-live="polite">
+          
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/indus-motor.webp" alt="Indus Motor Company logo" loading="lazy" decoding="async"></div>
+    <h3>Indus Motor Company</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Port Qasim</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/iqra-university.webp" alt="Iqra University logo" loading="lazy" decoding="async"></div>
+    <h3>Iqra University</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Karachi</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/meezan-bank.webp" alt="Meezan Bank logo" loading="lazy" decoding="async"></div>
+    <h3>Meezan Bank</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Pakistan</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/hilton-pharma.webp" alt="Hilton Pharma logo" loading="lazy" decoding="async"></div>
+    <h3>Hilton Pharma</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Karachi</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/nestle.webp" alt="Nestlé Pakistan logo" loading="lazy" decoding="async"></div>
+    <h3>Nestlé Pakistan</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Karachi</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/younus-textile.webp" alt="Younus Textile Mills logo" loading="lazy" decoding="async"></div>
+    <h3>Younus Textile Mills</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Group of Companies</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/al-rahim-textile.webp" alt="Al Rahim Textile logo" loading="lazy" decoding="async"></div>
+    <h3>Al Rahim Textile</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Karachi</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/olympia.webp" alt="Olympia Group of Companies logo" loading="lazy" decoding="async"></div>
+    <h3>Olympia Group of Companies</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Karachi</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/grace-apparel.webp" alt="Grace Apparel (Pvt) Ltd logo" loading="lazy" decoding="async"></div>
+    <h3>Grace Apparel (Pvt) Ltd</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Karachi</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/bin-qasim.webp" alt="Bin Qasim Packages logo" loading="lazy" decoding="async"></div>
+    <h3>Bin Qasim Packages</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Karachi</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/lucky-textile.webp" alt="Lucky Textile Mills logo" loading="lazy" decoding="async"></div>
+    <h3>Lucky Textile Mills</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Karachi</p>
+  </div>
+  <div class="client-card reveal">
+    <div class="client-card__logo"><img src="assets/img/clients/city-school.webp" alt="The City School logo" loading="lazy" decoding="async"></div>
+    <h3>The City School</h3>
+    <p><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg>Karachi</p>
+  </div>
+        </div>
+      </div>
     </section>
 
-         <!-- Footer Section -->
-     <footer class="footer-section">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-widget about-widget">
-                            <img src="./assets/fmz-logo.png" alt="FMZ Logo" class="footer-logo mb-3">
-                            <p>Leading provider of comprehensive safety training and equipment solutions, dedicated to creating safer workplaces across industries.</p>
-                            <div class="social-links">
-                                <a target="_blank" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a target="_blank" href="https://wa.me/923452008861"><i class="fab fa-whatsapp"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="footer-widget">
-                            <h4>Quick Links</h4>
-                            <ul class="footer-links">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Safety Training</a></li>
-                                <li><a href="#">Safety Equipment</a></li>
-                                <li><a href="#">Our Clients</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h4>Our Services</h4>
-                            <ul class="footer-links">
-                                <li><a href="#">Fire Safety Training</a></li>
-                                <li><a href="#">First Aid Training</a></li>
-                                <li><a href="#">Emergency Response</a></li>
-                                <li><a href="#">Safety Audits</a></li>
-                                <li><a href="#">Safety Equipment</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget contact-widget">
-                            <h4>Contact Info</h4>
-                            <div class="contact-info">
-                                <p><i class="fas fa-map-marker-alt"></i> Office # 123, ABC Building, XYZ Area, Karachi, Pakistan</p>
-                                <p><i class="fas fa-phone"></i> +92 123 4567890</p>
-                                <p><i class="fas fa-envelope"></i> info@fmz.com</p>
-                                <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div>
+            <h2>Join our growing list of clients</h2>
+            <p>Find out how FMZ can help your organisation stay safe and compliant.</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="btn btn--light btn--lg" href="contact.html">Get a free quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+            <a class="btn btn--ghost-light btn--lg" data-href="tel" href="tel:+923452008861"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg> Call us</a>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <p class="mb-0">&copy; 2024 FMZ. All rights reserved.</p>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <div class="footer-bottom-links">
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Terms & Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__top">
+      <div>
+        <a class="footer__logo" href="index.html"><img src="assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="112" height="40" loading="lazy"></a>
+        <p>Fire-safety training, safety equipment and consultancy — helping organisations across Pakistan build safer workplaces since 2014.</p>
+        <div class="social">
+          <a data-social="facebook" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook"></use></svg></a>
+        <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
+        <a data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram"></use></svg></a>
+        <a data-social="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube"></use></svg></a>
+          <a data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg></a>
         </div>
-    </footer>
-    <!-- End Footer Section -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="./js/firebase-public.js"></script>
-    <script src="./js/clients-page-public.js"></script>
-    <script src="./js/main.js"></script>
-    <script>
-        // Navbar scroll behavior
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.custom-navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
-        });
-    </script>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul class="footer__links">
+          <li><a href="about.html">About us</a></li>
+          <li><a href="clients.html">Our clients</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <ul class="footer__links">
+          <li><a href="training.html">Fire safety training</a></li>
+          <li><a href="training.html">First aid training</a></li>
+          <li><a href="training.html">Emergency response</a></li>
+          <li><a href="equipments.html">Safety equipment</a></li>
+          <li><a href="contact.html?subject=Safety%20audit%20request">Safety audits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Get in touch</h3>
+        <ul class="footer__contact">
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg><span data-setting="address">Karachi, Pakistan</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg><a data-href="tel" href="tel:+923452008861" data-setting="phone">+92 345 2008861</a></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg><a data-href="mailto" href="mailto:info@fmz.com" data-setting="email">info@fmz.com</a></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-setting="hours">Mon – Sat: 9:00 AM – 6:00 PM</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>&copy; <span data-year>2026</span> FMZ Fire &amp; Safety Engineering. All rights reserved.</span>
+        <span>Karachi, Pakistan</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="fab-whatsapp" data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg></a>
+  <button class="to-top" type="button" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up"></use></svg></button>
 </body>
-
 </html>

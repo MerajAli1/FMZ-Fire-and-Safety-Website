@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Sign in · FMZ Admin</title>
+  <link rel="icon" href="../assets/img/icon-32.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/admin.css">
+  <script type="module" src="js/login.js"></script>
+</head>
+<body>
+  <div class="auth">
+    <aside class="auth__aside">
+      <h2>Manage your website content in one place.</h2>
+      <p>Equipment, clients, gallery, training programs, inquiries and site settings — all updated live.</p>
+    </aside>
+    <main class="auth__main">
+      <div class="auth__card">
+        <img class="auth__logo" src="../assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="146" height="52">
+        <h1>Welcome back</h1>
+        <p>Sign in to the FMZ admin dashboard.</p>
+        <div id="login-alert" class="alert alert--error" role="alert" hidden></div>
+        <form id="login-form" novalidate>
+          <div class="field" style="margin-bottom:14px">
+            <label for="email">Email address</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="username" required autofocus>
+          </div>
+          <div class="field" style="margin-bottom:6px">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input class="input" id="password" name="password" type="password" autocomplete="current-password" required>
+              <button type="button" id="toggle-password" aria-label="Show password"><svg class="icon" aria-hidden="true"><use href="../assets/icons.svg#eye"></use></svg></button>
+            </div>
+          </div>
+          <div class="auth__row">
+            <label class="check"><input type="checkbox" name="remember" checked> Keep me signed in</label>
+            <button type="button" class="link-btn" id="forgot">Forgot password?</button>
+          </div>
+          <button class="btn btn--block" id="login-btn" type="submit" style="padding:.75rem">Sign in</button>
+        </form>
+        <a class="auth__back" href="../index.html"><svg class="icon icon--sm" aria-hidden="true"><use href="../assets/icons.svg#chevron-left"></use></svg> Back to website</a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

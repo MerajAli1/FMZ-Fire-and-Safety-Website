@@ -1,333 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About us- FMZ Safety</title>
-    <link rel="icon" href="./assets/fmz-Logo-design.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us | FMZ Fire &amp; Safety Engineering</title>
+  <meta name="description" content="Learn about FMZ Fire & Safety Engineering — our story since 2014, our mission, values and the team behind safer workplaces in Pakistan.">
+  <meta name="theme-color" content="#0b1f3a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FMZ Fire &amp; Safety Engineering">
+  <meta property="og:title" content="About Us | FMZ Fire &amp; Safety Engineering">
+  <meta property="og:description" content="Learn about FMZ Fire & Safety Engineering — our story since 2014, our mission, values and the team behind safer workplaces in Pakistan.">
+  <link rel="icon" href="assets/img/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="https://res.cloudinary.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script type="module" src="js/pages/about.js"></script>
 </head>
+<body data-page="about">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="announcement" class="announcement" role="status" hidden></div>
 
-<body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
-        <div class="container">
-             <a class="navbar-brand" href="#">
-                    <img src="./assets/fmz-logo.png" alt="FMZ Logo">
-                    <span class="brand-text">Fire, Safety Engineering</span>
-                </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./training.html">Safety Training</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./equipments.html">Safety Equipments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./clients.html">Our Clients</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./contact.html">Contact</a>
-                    </li>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar__info">
+        <a data-href="tel" href="tel:+923452008861"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg><span data-setting="phone">+92 345 2008861</span></a>
+        <a data-href="mailto" href="mailto:info@fmz.com"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg><span data-setting="email">info@fmz.com</span></a>
+        <span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-setting="hours">Mon – Sat: 9:00 AM – 6:00 PM</span></span>
+      </div>
+      <div class="topbar__social">
+        <a data-social="facebook" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook"></use></svg></a>
+        <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
+        <a data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram"></use></svg></a>
+        <a data-social="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube"></use></svg></a>
+      </div>
+    </div>
+  </div>
 
-                </ul>
-            </div>
+  <header class="header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="FMZ Fire &amp; Safety Engineering — home">
+        <img src="assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="129" height="46">
+      </a>
+      <nav id="site-nav" class="nav" aria-label="Main">
+        <button class="nav-close" type="button" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#x"></use></svg></button>
+        <a class="nav__link" data-page="home" href="index.html">Home</a>
+        <a class="nav__link" data-page="about" href="about.html">About</a>
+        <a class="nav__link" data-page="training" href="training.html">Training</a>
+        <a class="nav__link" data-page="equipment" href="equipments.html">Equipment</a>
+        <a class="nav__link" data-page="clients" href="clients.html">Clients</a>
+        <a class="nav__link" data-page="gallery" href="gallery.html">Gallery</a>
+        <a class="nav__link" data-page="contact" href="contact.html">Contact</a>
+        <div class="nav__mobile-extra">
+          <a class="btn btn--block" href="contact.html">Get a free quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+          <a class="btn btn--whatsapp btn--block" data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg> Chat on WhatsApp</a>
         </div>
-    </nav>
-    <!-- NAVBAR -->
-
-
-    <!-- About Page Hero -->
+      </nav>
+      <a class="btn btn--sm header__cta" href="contact.html">Get a Quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#menu"></use></svg></button>
+    </div>
+  </header>
+  <div class="nav-backdrop"></div>
+  <main id="main">
     <section class="page-hero">
-        <div class="container">
-            <h1>About FMZ Safety</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">About Us</li>
-                </ol>
-            </nav>
-        </div>
+      <img class="page-hero__bg" src="assets/img/about-2-960.webp" srcset="assets/img/about-2-960.webp 960w, assets/img/about-2.webp 1200w" sizes="100vw" alt="" fetchpriority="high">
+      <div class="container">
+        <h1>About FMZ</h1>
+        <p>Building safer workplaces across Pakistan since 2014 through practical training, dependable equipment and expert advice.</p>
+        <nav aria-label="Breadcrumb"><ol class="breadcrumb"><li><a href="index.html">Home</a></li><li aria-current="page">About</li></ol></nav>
+      </div>
     </section>
 
-    <!-- Company Overview Section -->
-    <section class="about-page-section">
-        <div class="container">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-6">
-                    <div class="about-content">
-                        <span class="section-subtitle">Our Story</span>
-                        <h2 class="section-title">Leading Safety Solutions Since 2014</h2>
-                        <p class="section-description">FMZ Safety has been at the forefront of workplace safety for over
-                            a decade, providing comprehensive training and equipment solutions across Pakistan.</p>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <span class="year">2014</span>
-                                <p>Founded with a vision to transform workplace safety standards</p>
-                            </div>
-                            <div class="timeline-item">
-                                <span class="year">2016</span>
-                                <p>Expanded services to include comprehensive safety equipment solutions</p>
-                            </div>
-                            <div class="timeline-item">
-                                <span class="year">2018</span>
-                                <p>Achieved ISO certification for quality management systems</p>
-                            </div>
-                            <div class="timeline-item">
-                                <span class="year">2024</span>
-                                <p>Serving 100+ corporate clients across multiple industries</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-image-group">
-                        <div class="row g-4">
-                            <div class="col-6">
-                                <img src="./assets/about-1.jpg" alt="Training Session" class="img-fluid rounded-3">
-                            </div>
-                            <div class="col-6">
-                                <img src="./assets/about-2.jpg" alt="Safety Equipment" class="img-fluid rounded-3">
-                            </div>
-                            <div class="col-12">
-                                <img src="./assets/about-3.jpg" alt="Team Photo" class="img-fluid rounded-3">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section">
+      <div class="container split">
+        <div class="reveal">
+          <span class="eyebrow">Our story</span>
+          <h2 class="section-title">Leading safety solutions since 2014</h2>
+          <p class="lead">FMZ has been at the forefront of workplace safety for over a decade, providing comprehensive training and equipment solutions to organisations across Pakistan.</p>
+          <div class="timeline">
+            <div class="timeline__item"><span class="timeline__year">2014</span><p>Founded with a vision to raise workplace safety standards.</p></div>
+            <div class="timeline__item"><span class="timeline__year">2016</span><p>Expanded into comprehensive safety equipment solutions.</p></div>
+            <div class="timeline__item"><span class="timeline__year">2018</span><p>Achieved ISO certification for our quality management system.</p></div>
+            <div class="timeline__item"><span class="timeline__year">Today</span><p>Serving 100+ corporate clients across multiple industries.</p></div>
+          </div>
         </div>
+        <div class="media-stack reveal" data-delay="1">
+          <div class="media-stack__main"><img src="assets/img/about-1.webp" alt="Firefighter wearing a breathing apparatus mask" width="800" height="1200" loading="lazy" decoding="async"></div>
+          <div class="media-stack__sub"><img src="assets/img/equipment-640.webp" alt="Fire and rescue equipment" width="640" height="427" loading="lazy" decoding="async"></div>
+          <div class="media-stack__badge"><strong data-stat="statYears" data-count="10" data-suffix="+">10+</strong><span>Years of<br>excellence</span></div>
+        </div>
+      </div>
     </section>
 
-    <!-- Mission & Vision Section -->
-    <section class="mission-vision-section">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="mission-card">
-                        <div class="icon-box">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h3>Our Mission</h3>
-                        <p>To create safer workplaces through innovative training solutions and quality safety
-                            equipment, ensuring the well-being of every worker.</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="vision-card">
-                        <div class="icon-box">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <h3>Our Vision</h3>
-                        <p>To be the leading safety solutions provider in Pakistan, setting new standards in workplace
-                            safety and emergency preparedness.</p>
-                    </div>
-                </div>
-            </div>
+    <section class="section section--soft">
+      <div class="container grid grid--2">
+        <div class="mission-card reveal">
+          <div class="mission-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#target"></use></svg></div>
+          <h3>Our mission</h3>
+          <p>To create safer workplaces through practical training and quality safety equipment, ensuring the well-being of every worker.</p>
+          <svg class="icon icon--bg" aria-hidden="true"><use href="assets/icons.svg#target"></use></svg>
         </div>
+        <div class="mission-card mission-card--accent reveal" data-delay="1">
+          <div class="mission-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#eye"></use></svg></div>
+          <h3>Our vision</h3>
+          <p>To be Pakistan's leading safety solutions provider, setting new standards in workplace safety and emergency preparedness.</p>
+          <svg class="icon icon--bg" aria-hidden="true"><use href="assets/icons.svg#eye"></use></svg>
+        </div>
+      </div>
     </section>
 
-    <!-- Core Values Section -->
-    <section class="values-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="section-subtitle">What Drives Us</span>
-                <h2 class="section-title">Our Core Values</h2>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="value-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h4>Safety First</h4>
-                        <p>Prioritizing safety in every decision and action we take</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="value-card">
-                        <i class="fas fa-star"></i>
-                        <h4>Excellence</h4>
-                        <p>Maintaining the highest standards in our services</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="value-card">
-                        <i class="fas fa-handshake"></i>
-                        <h4>Integrity</h4>
-                        <p>Operating with honesty and ethical principles</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="value-card">
-                        <i class="fas fa-lightbulb"></i>
-                        <h4>Innovation</h4>
-                        <p>Continuously improving our methods and solutions</p>
-                    </div>
-                </div>
-            </div>
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal "><span class="eyebrow">What drives us</span><h2 class="section-title">Our core values</h2></div>
+        <div class="grid grid--4">
+          <div class="value-card reveal" data-delay="0"><div class="value-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#shield"></use></svg></div><h3>Safety first</h3><p>Safety guides every decision and action we take.</p></div>
+          <div class="value-card reveal" data-delay="1"><div class="value-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#star"></use></svg></div><h3>Excellence</h3><p>We hold ourselves to the highest professional standards.</p></div>
+          <div class="value-card reveal" data-delay="2"><div class="value-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#handshake"></use></svg></div><h3>Integrity</h3><p>Honest advice and ethical practice, always.</p></div>
+          <div class="value-card reveal" data-delay="3"><div class="value-card__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#lightbulb"></use></svg></div><h3>Innovation</h3><p>We keep improving our methods and solutions.</p></div>
         </div>
+      </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="team-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="section-subtitle">Our Leadership</span>
-                <h2 class="section-title">Meet Our Team</h2>
-            </div>
-            <div class="row g-4">
-                <!-- Add team member cards here -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="team-card">
-                        <div class="member-image">
-                            <img src="./assets/team-1.jpg" alt="Team Member">
-                        </div>
-                        <div class="member-info">
-                            <h4>John Doe</h4>
-                            <p>Chief Executive Officer</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more team members as needed -->
-            </div>
+    <section class="stats stats--flat" aria-label="Key figures">
+      <div class="container">
+        <div class="stats__inner">
+          <div class="stat">
+            <div class="stat__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#award"></use></svg></div>
+            <div><div class="stat__num" data-stat="statYears" data-count="10" data-suffix="+">10+</div><div class="stat__label">Years of experience</div></div>
+          </div>
+          <div class="stat">
+            <div class="stat__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#building"></use></svg></div>
+            <div><div class="stat__num" data-stat="statClients" data-count="100" data-suffix="+">100+</div><div class="stat__label">Organisations served</div></div>
+          </div>
+          <div class="stat">
+            <div class="stat__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#users"></use></svg></div>
+            <div><div class="stat__num" data-stat="statTrained" data-count="5000" data-suffix="+">5,000+</div><div class="stat__label">Professionals trained</div></div>
+          </div>
+          <div class="stat">
+            <div class="stat__icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#graduation"></use></svg></div>
+            <div><div class="stat__num" data-stat="statPrograms" data-count="15" data-suffix="+">15+</div><div class="stat__label">Training programs</div></div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section class="certifications-section">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="section-subtitle">Our Credentials</span>
-                <h2 class="section-title">Certifications & Accreditations</h2>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="certification-card">
-                        <img src="./assets/cert-1.png" alt="ISO Certification">
-                        <h5>ISO 9001:2015</h5>
-                    </div>
-                </div>
-                <!-- Add more certifications as needed -->
-            </div>
-        </div>
+    <section class="section" id="team-section" hidden>
+      <div class="container">
+        <div class="section-head reveal "><span class="eyebrow">Our people</span><h2 class="section-title">Meet the team</h2><p>Experienced professionals dedicated to your safety.</p></div>
+        <div class="grid grid--4" id="team-grid"></div>
+      </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="footer-section">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-widget about-widget">
-                            <img src="./assets/fmz-logo.png" alt="FMZ Logo" class="footer-logo mb-3">
-                            <p>Leading provider of comprehensive safety training and equipment solutions, dedicated to
-                                creating safer workplaces across industries.</p>
-                            <div class="social-links">
-                                <a target="_blank" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                  <a target="_blank" href="https://wa.me/923452008861"><i class="fab fa-whatsapp"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="footer-widget">
-                            <h4>Quick Links</h4>
-                            <ul class="footer-links">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Safety Training</a></li>
-                                <li><a href="#">Safety Equipment</a></li>
-                                <li><a href="#">Our Clients</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h4>Our Services</h4>
-                            <ul class="footer-links">
-                                <li><a href="#">Fire Safety Training</a></li>
-                                <li><a href="#">First Aid Training</a></li>
-                                <li><a href="#">Emergency Response</a></li>
-                                <li><a href="#">Safety Audits</a></li>
-                                <li><a href="#">Safety Equipment</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget contact-widget">
-                            <h4>Contact Info</h4>
-                            <div class="contact-info">
-                                <p><i class="fas fa-map-marker-alt"></i> Office # 123, ABC Building, XYZ Area, Karachi,
-                                    Pakistan</p>
-                                <p><i class="fas fa-phone"></i> +92 123 4567890</p>
-                                <p><i class="fas fa-envelope"></i> info@fmz.com</p>
-                                <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div>
+            <h2>Ready to make your workplace safer?</h2>
+            <p>Talk to our team about training, equipment or a site safety assessment — we usually respond within one business day.</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="btn btn--light btn--lg" href="contact.html">Get a free quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+            <a class="btn btn--ghost-light btn--lg" data-href="tel" href="tel:+923452008861"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg> Call us</a>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <p class="mb-0">&copy; 2024 FMZ. All rights reserved.</p>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <div class="footer-bottom-links">
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Terms & Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer Section -->
+      </div>
+    </section>
+  </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script>
-        // Navbar scroll behavior
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.custom-navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
-        });
-    </script>
+  <footer class="footer">
+    <div class="container footer__top">
+      <div>
+        <a class="footer__logo" href="index.html"><img src="assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="112" height="40" loading="lazy"></a>
+        <p>Fire-safety training, safety equipment and consultancy — helping organisations across Pakistan build safer workplaces since 2014.</p>
+        <div class="social">
+          <a data-social="facebook" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook"></use></svg></a>
+        <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
+        <a data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram"></use></svg></a>
+        <a data-social="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube"></use></svg></a>
+          <a data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul class="footer__links">
+          <li><a href="about.html">About us</a></li>
+          <li><a href="clients.html">Our clients</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <ul class="footer__links">
+          <li><a href="training.html">Fire safety training</a></li>
+          <li><a href="training.html">First aid training</a></li>
+          <li><a href="training.html">Emergency response</a></li>
+          <li><a href="equipments.html">Safety equipment</a></li>
+          <li><a href="contact.html?subject=Safety%20audit%20request">Safety audits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Get in touch</h3>
+        <ul class="footer__contact">
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg><span data-setting="address">Karachi, Pakistan</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg><a data-href="tel" href="tel:+923452008861" data-setting="phone">+92 345 2008861</a></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg><a data-href="mailto" href="mailto:info@fmz.com" data-setting="email">info@fmz.com</a></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-setting="hours">Mon – Sat: 9:00 AM – 6:00 PM</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>&copy; <span data-year>2026</span> FMZ Fire &amp; Safety Engineering. All rights reserved.</span>
+        <span>Karachi, Pakistan</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="fab-whatsapp" data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg></a>
+  <button class="to-top" type="button" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up"></use></svg></button>
 </body>
-
 </html>

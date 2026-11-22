@@ -1,305 +1,161 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Safety Equipments - FMZ Safety</title>
-        <link rel="icon" href="./assets/fmz-Logo-design.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet">
-    </head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safety Equipment | FMZ Fire &amp; Safety Engineering</title>
+  <meta name="description" content="Browse fire extinguishers, personal protective equipment, first-aid kits and emergency equipment supplied by FMZ Fire & Safety Engineering.">
+  <meta name="theme-color" content="#0b1f3a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FMZ Fire &amp; Safety Engineering">
+  <meta property="og:title" content="Safety Equipment | FMZ Fire &amp; Safety Engineering">
+  <meta property="og:description" content="Browse fire extinguishers, personal protective equipment, first-aid kits and emergency equipment supplied by FMZ Fire & Safety Engineering.">
+  <link rel="icon" href="assets/img/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="https://res.cloudinary.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script type="module" src="js/pages/equipment.js"></script>
 </head>
+<body data-page="equipment">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="announcement" class="announcement" role="status" hidden></div>
 
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
-        <div class="container">
-             <a class="navbar-brand" href="#">
-                    <img src="./assets/fmz-logo.png" alt="FMZ Logo">
-                    <span class="brand-text">Fire, Safety Engineering</span>
-                </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./training.html">Safety Training</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./equipments.html">Safety Equipments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./clients.html">Our Clients</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./contact.html">Contact</a>
-                    </li>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar__info">
+        <a data-href="tel" href="tel:+923452008861"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg><span data-setting="phone">+92 345 2008861</span></a>
+        <a data-href="mailto" href="mailto:info@fmz.com"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg><span data-setting="email">info@fmz.com</span></a>
+        <span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-setting="hours">Mon – Sat: 9:00 AM – 6:00 PM</span></span>
+      </div>
+      <div class="topbar__social">
+        <a data-social="facebook" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook"></use></svg></a>
+        <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
+        <a data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram"></use></svg></a>
+        <a data-social="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube"></use></svg></a>
+      </div>
+    </div>
+  </div>
 
-                </ul>
-            </div>
+  <header class="header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="FMZ Fire &amp; Safety Engineering — home">
+        <img src="assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="129" height="46">
+      </a>
+      <nav id="site-nav" class="nav" aria-label="Main">
+        <button class="nav-close" type="button" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#x"></use></svg></button>
+        <a class="nav__link" data-page="home" href="index.html">Home</a>
+        <a class="nav__link" data-page="about" href="about.html">About</a>
+        <a class="nav__link" data-page="training" href="training.html">Training</a>
+        <a class="nav__link" data-page="equipment" href="equipments.html">Equipment</a>
+        <a class="nav__link" data-page="clients" href="clients.html">Clients</a>
+        <a class="nav__link" data-page="gallery" href="gallery.html">Gallery</a>
+        <a class="nav__link" data-page="contact" href="contact.html">Contact</a>
+        <div class="nav__mobile-extra">
+          <a class="btn btn--block" href="contact.html">Get a free quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+          <a class="btn btn--whatsapp btn--block" data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg> Chat on WhatsApp</a>
         </div>
-    </nav>
-    <!-- Navbar -->
-
-    <!-- Equipment Page Hero -->
+      </nav>
+      <a class="btn btn--sm header__cta" href="contact.html">Get a Quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#menu"></use></svg></button>
+    </div>
+  </header>
+  <div class="nav-backdrop"></div>
+  <main id="main">
     <section class="page-hero">
-        <div class="container">
-            <h1>Safety Equipment</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Safety Equipment</li>
-                </ol>
-            </nav>
-        </div>
+      <img class="page-hero__bg" src="assets/img/hero-3-960.webp" srcset="assets/img/hero-3-960.webp 960w, assets/img/hero-3.webp 1600w" sizes="100vw" alt="" fetchpriority="high">
+      <div class="container">
+        <h1>Safety equipment</h1>
+        <p>Quality-assured fire-safety, PPE, first-aid and emergency equipment for every workplace.</p>
+        <nav aria-label="Breadcrumb"><ol class="breadcrumb"><li><a href="index.html">Home</a></li><li aria-current="page">Equipment</li></ol></nav>
+      </div>
     </section>
 
-    <!-- Equipment Categories Section -->
-    <section class="equipment-filters-section py-5">
-        <div class="container">
-            <div class="equipment-filters">
-                <button class="filter-btn active" data-filter="all">All Categories</button>
-                <button class="filter-btn" data-filter="fire">Fire Safety</button>
-                <button class="filter-btn" data-filter="ppe">Personal Protection</button>
-                <button class="filter-btn" data-filter="first-aid">First Aid</button>
-                <button class="filter-btn" data-filter="emergency">Emergency Equipment</button>
-            </div>
+    <section class="section">
+      <div class="container">
+        <div class="toolbar">
+          <div class="chips" id="equipment-filters" role="group" aria-label="Filter by category"></div>
+          <label class="search"><span class="sr-only">Search equipment</span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#search"></use></svg><input id="equipment-search" type="search" placeholder="Search equipment…" autocomplete="off"></label>
         </div>
+        <p class="results-note" id="equipment-note" hidden></p>
+        <div class="grid grid--3" id="equipment-grid" aria-live="polite">
+          <div class="skeleton skeleton--card" aria-hidden="true"></div><div class="skeleton skeleton--card" aria-hidden="true"></div><div class="skeleton skeleton--card" aria-hidden="true"></div><div class="skeleton skeleton--card" aria-hidden="true"></div><div class="skeleton skeleton--card" aria-hidden="true"></div><div class="skeleton skeleton--card" aria-hidden="true"></div>
+        </div>
+      </div>
     </section>
 
-    <!-- Full Equipment Grid -->
-    <section class="equipment-section py-5">
-        <div class="container">
-            <div class="row g-4">
-                <!-- Equipment Card -->
-                <div class="col-lg-4 col-md-6" data-category="fire">
-                    <div class="equipment-card">
-                        <div class="card-image">
-                            <img src="./assets/carousel-image1.jpg" alt="Fire Extinguisher">
-                            <div class="hover-content">
-                                <a href="contact.html" class="btn btn-outline-light">Inquire Now</a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Fire Extinguishers</h3>
-                            <p>Advanced fire suppression equipment for various fire classifications.</p>
-                            <div class="equipment-meta">
-                                <span class="category">Fire Safety</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Equipment Card -->
-                <div class="col-lg-4 col-md-6" data-category="emergency">
-                    <div class="equipment-card">
-                        <div class="card-image">
-                            <img src="./assets/carousel-image1.jpg" alt="Fire Extinguisher">
-                            <div class="hover-content">
-                                <a href="contact.html" class="btn btn-outline-light">Inquire Now</a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Fire Extinguishers</h3>
-                            <p>Advanced fire suppression equipment for various fire classifications.</p>
-                            <div class="equipment-meta">
-                                <span class="category">Fire Safety</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Equipment Card -->
-                <div class="col-lg-4 col-md-6" data-category="first-aid">
-                    <div class="equipment-card">
-                        <div class="card-image">
-                            <img src="./assets/carousel-image1.jpg" alt="Fire Extinguisher">
-                            <div class="hover-content">
-                                <a href="contact.html" class="btn btn-outline-light">Inquire Now</a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Fire Extinguishers</h3>
-                            <p>Advanced fire suppression equipment for various fire classifications.</p>
-                            <div class="equipment-meta">
-                                <span class="category">Fire Safety</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Equipment Card -->
-                <div class="col-lg-4 col-md-6" data-category="fire">
-                    <div class="equipment-card">
-                        <div class="card-image">
-                            <img src="./assets/carousel-image1.jpg" alt="Fire Extinguisher">
-                            <div class="hover-content">
-                                <a href="contact.html" class="btn btn-outline-light">Inquire Now</a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Fire Extinguishers</h3>
-                            <p>Advanced fire suppression equipment for various fire classifications.</p>
-                            <div class="equipment-meta">
-                                <span class="category">Fire Safety</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Equipment Card -->
-                <div class="col-lg-4 col-md-6" data-category="fire">
-                    <div class="equipment-card">
-                        <div class="card-image">
-                            <img src="./assets/carousel-image1.jpg" alt="Fire Extinguisher">
-                            <div class="hover-content">
-                                <a href="contact.html" class="btn btn-outline-light">Inquire Now</a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Fire Extinguishers</h3>
-                            <p>Advanced fire suppression equipment for various fire classifications.</p>
-                            <div class="equipment-meta">
-                                <span class="category">Fire Safety</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Equipment Card -->
-                <div class="col-lg-4 col-md-6" data-category="fire">
-                    <div class="equipment-card">
-                        <div class="card-image">
-                            <img src="./assets/carousel-image1.jpg" alt="Fire Extinguisher">
-                            <div class="hover-content">
-                                <a href="contact.html" class="btn btn-outline-light">Inquire Now</a>
-                            </div>
-                        </div>
-                        <div class="card-content">
-                            <h3>Fire Extinguishers</h3>
-                            <p>Advanced fire suppression equipment for various fire classifications.</p>
-                            <div class="equipment-meta">
-                                <span class="category">Fire Safety</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more equipment cards following the same structure -->
-            </div>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div>
+            <h2>Can't find what you need?</h2>
+            <p>We source a wide range of safety equipment. Send us your requirements and we will get back with a quote.</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="btn btn--light btn--lg" href="contact.html">Get a free quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+            <a class="btn btn--ghost-light btn--lg" data-href="tel" href="tel:+923452008861"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg> Call us</a>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer Section -->
-    <footer class="footer-section">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-widget about-widget">
-                            <img src="./assets/fmz-logo.png" alt="FMZ Logo" class="footer-logo mb-3">
-                            <p>Leading provider of comprehensive safety training and equipment solutions, dedicated to
-                                creating safer workplaces across industries.</p>
-                            <div class="social-links">
-                                <a target="_blank" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a target="_blank" href="https://wa.me/923452008861"><i class="fab fa-whatsapp"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="footer-widget">
-                            <h4>Quick Links</h4>
-                            <ul class="footer-links">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Safety Training</a></li>
-                                <li><a href="#">Safety Equipment</a></li>
-                                <li><a href="#">Our Clients</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h4>Our Services</h4>
-                            <ul class="footer-links">
-                                <li><a href="#">Fire Safety Training</a></li>
-                                <li><a href="#">First Aid Training</a></li>
-                                <li><a href="#">Emergency Response</a></li>
-                                <li><a href="#">Safety Audits</a></li>
-                                <li><a href="#">Safety Equipment</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget contact-widget">
-                            <h4>Contact Info</h4>
-                            <div class="contact-info">
-                                <p><i class="fas fa-map-marker-alt"></i> Office # 123, ABC Building, XYZ Area, Karachi,
-                                    Pakistan</p>
-                                <p><i class="fas fa-phone"></i> +92 123 4567890</p>
-                                <p><i class="fas fa-envelope"></i> info@fmz.com</p>
-                                <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <footer class="footer">
+    <div class="container footer__top">
+      <div>
+        <a class="footer__logo" href="index.html"><img src="assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="112" height="40" loading="lazy"></a>
+        <p>Fire-safety training, safety equipment and consultancy — helping organisations across Pakistan build safer workplaces since 2014.</p>
+        <div class="social">
+          <a data-social="facebook" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook"></use></svg></a>
+        <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
+        <a data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram"></use></svg></a>
+        <a data-social="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube"></use></svg></a>
+          <a data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg></a>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <p class="mb-0">&copy; 2024 FMZ. All rights reserved.</p>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <div class="footer-bottom-links">
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Terms & Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer Section -->
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul class="footer__links">
+          <li><a href="about.html">About us</a></li>
+          <li><a href="clients.html">Our clients</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <ul class="footer__links">
+          <li><a href="training.html">Fire safety training</a></li>
+          <li><a href="training.html">First aid training</a></li>
+          <li><a href="training.html">Emergency response</a></li>
+          <li><a href="equipments.html">Safety equipment</a></li>
+          <li><a href="contact.html?subject=Safety%20audit%20request">Safety audits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Get in touch</h3>
+        <ul class="footer__contact">
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg><span data-setting="address">Karachi, Pakistan</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg><a data-href="tel" href="tel:+923452008861" data-setting="phone">+92 345 2008861</a></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg><a data-href="mailto" href="mailto:info@fmz.com" data-setting="email">info@fmz.com</a></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-setting="hours">Mon – Sat: 9:00 AM – 6:00 PM</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>&copy; <span data-year>2026</span> FMZ Fire &amp; Safety Engineering. All rights reserved.</span>
+        <span>Karachi, Pakistan</span>
+      </div>
+    </div>
+  </footer>
 
-    <!-- Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="./js/firebase-public.js"></script>
-    <script src="./js/equipment.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script>
-        // Navbar scroll behavior
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.custom-navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
-        });
-    </script>
+  <a class="fab-whatsapp" data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg></a>
+  <button class="to-top" type="button" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up"></use></svg></button>
 </body>
-
 </html>

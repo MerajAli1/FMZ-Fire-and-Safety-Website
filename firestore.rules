@@ -1,0 +1,62 @@
+rules_version = '2';
+
+// FMZ website — Firestore security rules
+// Publish: Firebase console → Firestore Database → Rules → paste → Publish
+//      or: firebase deploy --only firestore:rules
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Keep in sync with ADMIN_EMAILS in js/config.js
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['admin123@gmail.com'];
+    }
+
+    function data() { return request.resource.data; }
+
+    function strField(field, minLen, maxLen) {
+      return data()[field] is string
+        && data()[field].size() >= minLen
+        && data()[field].size() <= maxLen;
+    }
+
+    function optionalStr(field, maxLen) {
+      return !(field in data()) || strField(field, 0, maxLen);
+    }
+
+    // ---------- Contact form submissions ----------
+    // Anyone can submit a well-formed message; only the admin can read or manage them.
+    match /contacts/{id} {
+      allow create: if isAdmin() || (
+        data().keys().hasOnly(['name', 'email', 'phone', 'subject', 'message', 'status', 'source', 'createdAt'])
+        && data().keys().hasAll(['name', 'email', 'message', 'createdAt'])
+        && strField('name', 1, 100)
+        && strField('email', 3, 150)
+        && data().email.matches('^[^@ ]+@[^@ ]+[.][^@ ]+$')
+        && strField('message', 1, 4000)
+        && optionalStr('phone', 30)
+        && optionalStr('subject', 150)
+        && optionalStr('source', 40)
+        && data().get('status', 'new') == 'new'
+        && data().createdAt is timestamp
+      );
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ---------- Public website content ----------
+    // Everyone can read; only the admin can create, edit or delete.
+    match /equipments/{id}   { allow read: if true; allow write: if isAdmin(); }
+    match /clients/{id}      { allow read: if true; allow write: if isAdmin(); }
+    match /gallery/{id}      { allow read: if true; allow write: if isAdmin(); }
+    match /trainings/{id}    { allow read: if true; allow write: if isAdmin(); }
+    match /team/{id}         { allow read: if true; allow write: if isAdmin(); }
+    match /testimonials/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /slides/{id}       { allow read: if true; allow write: if isAdmin(); }
+    match /settings/{id}     { allow read: if true; allow write: if isAdmin(); }
+
+    // Everything else is closed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

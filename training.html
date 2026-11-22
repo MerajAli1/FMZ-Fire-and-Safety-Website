@@ -1,405 +1,238 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="en" class="no-js">
 <head>
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Safety Training - FMZ Safety</title>
-        <link rel="icon" href="./assets/fmz-Logo-design.png">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet">
-    </head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Safety Training Programs | FMZ Fire &amp; Safety Engineering</title>
+  <meta name="description" content="Fire safety, first aid, working at height, chemical safety and emergency response training programs by FMZ — delivered by certified trainers in Karachi.">
+  <meta name="theme-color" content="#0b1f3a">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="FMZ Fire &amp; Safety Engineering">
+  <meta property="og:title" content="Safety Training Programs | FMZ Fire &amp; Safety Engineering">
+  <meta property="og:description" content="Fire safety, first aid, working at height, chemical safety and emergency response training programs by FMZ — delivered by certified trainers in Karachi.">
+  <link rel="icon" href="assets/img/icon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="https://res.cloudinary.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script type="module" src="js/pages/training.js"></script>
 </head>
+<body data-page="training">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="announcement" class="announcement" role="status" hidden></div>
 
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="./assets/fmz-logo.png" alt="FMZ Logo">
-                <span class="brand-text">Fire, Safety Engineering</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fs-5">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./training.html">Safety Training</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./equipments.html">Safety Equipments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./clients.html">Our Clients</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./contact.html">Contact</a>
-                    </li>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar__info">
+        <a data-href="tel" href="tel:+923452008861"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg><span data-setting="phone">+92 345 2008861</span></a>
+        <a data-href="mailto" href="mailto:info@fmz.com"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg><span data-setting="email">info@fmz.com</span></a>
+        <span><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-setting="hours">Mon – Sat: 9:00 AM – 6:00 PM</span></span>
+      </div>
+      <div class="topbar__social">
+        <a data-social="facebook" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook"></use></svg></a>
+        <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
+        <a data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram"></use></svg></a>
+        <a data-social="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube"></use></svg></a>
+      </div>
+    </div>
+  </div>
 
-                </ul>
-            </div>
+  <header class="header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="FMZ Fire &amp; Safety Engineering — home">
+        <img src="assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="129" height="46">
+      </a>
+      <nav id="site-nav" class="nav" aria-label="Main">
+        <button class="nav-close" type="button" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#x"></use></svg></button>
+        <a class="nav__link" data-page="home" href="index.html">Home</a>
+        <a class="nav__link" data-page="about" href="about.html">About</a>
+        <a class="nav__link" data-page="training" href="training.html">Training</a>
+        <a class="nav__link" data-page="equipment" href="equipments.html">Equipment</a>
+        <a class="nav__link" data-page="clients" href="clients.html">Clients</a>
+        <a class="nav__link" data-page="gallery" href="gallery.html">Gallery</a>
+        <a class="nav__link" data-page="contact" href="contact.html">Contact</a>
+        <div class="nav__mobile-extra">
+          <a class="btn btn--block" href="contact.html">Get a free quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+          <a class="btn btn--whatsapp btn--block" data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg> Chat on WhatsApp</a>
         </div>
-    </nav>
-    <!-- Navbar -->
-
-    <!-- Training Page Hero -->
-    <section class="page-hero training-hero">
-        <div class="container">
-            <h1>Safety Training Programs</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Safety Training</li>
-                </ol>
-            </nav>
-        </div>
+      </nav>
+      <a class="btn btn--sm header__cta" href="contact.html">Get a Quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#menu"></use></svg></button>
+    </div>
+  </header>
+  <div class="nav-backdrop"></div>
+  <main id="main">
+    <section class="page-hero">
+      <img class="page-hero__bg" src="assets/img/hero-2-960.webp" srcset="assets/img/hero-2-960.webp 960w, assets/img/hero-2.webp 1600w" sizes="100vw" alt="" fetchpriority="high">
+      <div class="container">
+        <h1>Safety training programs</h1>
+        <p>Practical, certified courses that prepare your people to prevent incidents and respond with confidence.</p>
+        <nav aria-label="Breadcrumb"><ol class="breadcrumb"><li><a href="index.html">Home</a></li><li aria-current="page">Training</li></ol></nav>
+      </div>
     </section>
 
-    <!-- Training Overview Section -->
-    <section class="training-overview-section py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <span class="section-subtitle">Why Choose Us</span>
-                    <h2 class="section-title">Expert Safety Training Solutions</h2>
-                    <p class="section-description">Our comprehensive training programs are designed to meet industry
-                        standards and ensure workplace safety across all sectors.</p>
-
-                    <div class="training-stats">
-                        <div class="stat-item">
-                            <i class="fas fa-users"></i>
-                            <div class="stat-content">
-                                <h3>5000+</h3>
-                                <p>Professionals Trained</p>
-                            </div>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-certificate"></i>
-                            <div class="stat-content">
-                                <h3>15+</h3>
-                                <p>Training Programs</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="training-overview-image">
-                        <img src="./assets/training-overview.jpg" alt="Training Overview" class="img-fluid rounded-3">
-                    </div>
-                </div>
-            </div>
+    <section class="section">
+      <div class="container split">
+        <div class="reveal">
+          <span class="eyebrow">Why train with us</span>
+          <h2 class="section-title">Expert-led training that meets industry standards</h2>
+          <p class="lead">Our programs combine classroom learning with realistic hands-on practice, so skills stay with your team long after the course ends.</p>
+          <ul class="checklist">
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check-circle"></use></svg> On-site or at our facility</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check-circle"></use></svg> Certificates for every participant</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check-circle"></use></svg> Live fire &amp; equipment drills</li>
+            <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#check-circle"></use></svg> Urdu &amp; English delivery</li>
+          </ul>
+          <a class="btn" href="contact.html?subject=Training%20inquiry">Plan a training session <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
         </div>
+        <div class="media-stack reveal" data-delay="1">
+          <div class="media-stack__main" style="aspect-ratio:4/3.4"><img src="assets/img/about-2.webp" srcset="assets/img/about-2-640.webp 640w, assets/img/about-2.webp 1200w" sizes="(max-width: 960px) 100vw, 560px" alt="Responders practising with a fire hose" loading="lazy" decoding="async"></div>
+          <div class="media-stack__badge"><strong data-stat="statTrained" data-count="5000" data-suffix="+">5,000+</strong><span>Professionals<br>trained</span></div>
+        </div>
+      </div>
     </section>
 
-    <!-- Training Programs Section -->
-    <section class="training-programs-section py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="section-subtitle">Our Programs</span>
-                <h2 class="section-title">Training Courses We Offer</h2>
-                <p class="section-description">Explore our wide range of safety training programs designed for various
-                    industries</p>
-            </div>
-
-            <div class="row g-4">
-                <!-- Fire Safety Training -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="fas fa-fire-extinguisher"></i>
-                        </div>
-                        <h3>Fire Safety Training</h3>
-                        <p>Comprehensive fire prevention and response training including hands-on fire extinguisher
-                            practice.</p>
-                        <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Fire Prevention Techniques</li>
-                            <li><i class="fas fa-check"></i> Emergency Response</li>
-                            <li><i class="fas fa-check"></i> Evacuation Procedures</li>
-                        </ul>
-                        <a href="#" class="btn btn-outline-primary">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- First Aid Training -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="fas fa-medkit"></i>
-                        </div>
-                        <h3>First Aid Training</h3>
-                        <p>Essential first aid skills and emergency medical response training for workplace safety.</p>
-                        <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Basic Life Support</li>
-                            <li><i class="fas fa-check"></i> Wound Management</li>
-                            <li><i class="fas fa-check"></i> CPR Techniques</li>
-                        </ul>
-                        <a href="#" class="btn btn-outline-primary">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Workplace Safety -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="fas fa-hard-hat"></i>
-                        </div>
-                        <h3>Workplace Safety</h3>
-                        <p>General workplace safety training covering various hazards and preventive measures.</p>
-                        <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Hazard Identification</li>
-                            <li><i class="fas fa-check"></i> Safe Work Practices</li>
-                            <li><i class="fas fa-check"></i> PPE Usage</li>
-                        </ul>
-                        <a href="#" class="btn btn-outline-primary">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Height Safety -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="fas fa-climbing"></i>
-                        </div>
-                        <h3>Height Safety Training</h3>
-                        <p>Specialized training for working at heights and fall protection measures.</p>
-                        <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Fall Protection Systems</li>
-                            <li><i class="fas fa-check"></i> Safety Harness Use</li>
-                            <li><i class="fas fa-check"></i> Rescue Procedures</li>
-                        </ul>
-                        <a href="#" class="btn btn-outline-primary">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Chemical Safety -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <h3>Chemical Safety</h3>
-                        <p>Handling and storage of hazardous materials and chemical safety protocols.</p>
-                        <ul class="program-features">
-                            <li><i class="fas fa-check"></i> HAZMAT Handling</li>
-                            <li><i class="fas fa-check"></i> Spill Control</li>
-                            <li><i class="fas fa-check"></i> Safety Data Sheets</li>
-                        </ul>
-                        <a href="#" class="btn btn-outline-primary">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Emergency Response -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="program-card">
-                        <div class="program-icon">
-                            <i class="fas fa-heartbeat"></i>
-                        </div>
-                        <h3>Emergency Response</h3>
-                        <p>Advanced emergency response and crisis management training.</p>
-                        <ul class="program-features">
-                            <li><i class="fas fa-check"></i> Crisis Management</li>
-                            <li><i class="fas fa-check"></i> Emergency Planning</li>
-                            <li><i class="fas fa-check"></i> Team Coordination</li>
-                        </ul>
-                        <a href="#" class="btn btn-outline-primary">Learn More</a>
-                    </div>
-                </div>
-            </div>
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head reveal "><span class="eyebrow">Our courses</span><h2 class="section-title">Training courses we offer</h2><p>Choose a course below or ask us to build a custom program for your site.</p></div>
+        <div class="grid grid--3" id="training-grid">
+          
+  <article class="feature-card reveal" data-delay="0">
+    <div class="feature-card__icon"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#fire-extinguisher"></use></svg></div>
+    <h3>Fire Safety Training</h3>
+    <span class="feature-card__meta"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg> 1 day</span>
+    <p>Fire prevention and response training including hands-on fire extinguisher practice.</p>
+    <ul><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Fire prevention techniques</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Emergency response</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Evacuation procedures</li></ul>
+    <a class="link-arrow" href="contact.html?subject=Training%20inquiry%3A%20Fire%20Safety%20Training">Enquire about this course <svg class="icon " aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+  </article>
+  <article class="feature-card reveal" data-delay="1">
+    <div class="feature-card__icon"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#first-aid"></use></svg></div>
+    <h3>First Aid Training</h3>
+    <span class="feature-card__meta"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg> 1–2 days</span>
+    <p>Essential first aid skills and emergency medical response for the workplace.</p>
+    <ul><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Basic life support</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Wound management</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> CPR techniques</li></ul>
+    <a class="link-arrow" href="contact.html?subject=Training%20inquiry%3A%20First%20Aid%20Training">Enquire about this course <svg class="icon " aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+  </article>
+  <article class="feature-card reveal" data-delay="2">
+    <div class="feature-card__icon"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#hard-hat"></use></svg></div>
+    <h3>Workplace Safety</h3>
+    <span class="feature-card__meta"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg> 1 day</span>
+    <p>General workplace safety covering common hazards and preventive measures.</p>
+    <ul><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Hazard identification</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Safe work practices</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> PPE usage</li></ul>
+    <a class="link-arrow" href="contact.html?subject=Training%20inquiry%3A%20Workplace%20Safety">Enquire about this course <svg class="icon " aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+  </article>
+  <article class="feature-card reveal" data-delay="0">
+    <div class="feature-card__icon"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#ladder"></use></svg></div>
+    <h3>Working at Height</h3>
+    <span class="feature-card__meta"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg> 1 day</span>
+    <p>Specialised training for working at heights and fall-protection systems.</p>
+    <ul><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Fall protection systems</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Safety harness use</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Rescue procedures</li></ul>
+    <a class="link-arrow" href="contact.html?subject=Training%20inquiry%3A%20Working%20at%20Height">Enquire about this course <svg class="icon " aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+  </article>
+  <article class="feature-card reveal" data-delay="1">
+    <div class="feature-card__icon"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#flask"></use></svg></div>
+    <h3>Chemical Safety</h3>
+    <span class="feature-card__meta"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg> 1 day</span>
+    <p>Safe handling and storage of hazardous materials and chemical safety protocols.</p>
+    <ul><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> HAZMAT handling</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Spill control</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Safety data sheets</li></ul>
+    <a class="link-arrow" href="contact.html?subject=Training%20inquiry%3A%20Chemical%20Safety">Enquire about this course <svg class="icon " aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+  </article>
+  <article class="feature-card reveal" data-delay="2">
+    <div class="feature-card__icon"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#heart-pulse"></use></svg></div>
+    <h3>Emergency Response</h3>
+    <span class="feature-card__meta"><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg> 2 days</span>
+    <p>Emergency planning, crisis management and response-team coordination.</p>
+    <ul><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Crisis management</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Emergency planning</li><li><svg class="icon " aria-hidden="true"><use href="assets/icons.svg#check"></use></svg> Team coordination</li></ul>
+    <a class="link-arrow" href="contact.html?subject=Training%20inquiry%3A%20Emergency%20Response">Enquire about this course <svg class="icon " aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+  </article>
         </div>
+      </div>
     </section>
 
-    <!-- Training Process Section -->
-    <section class="training-process-section py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="section-subtitle">How We Work</span>
-                <h2 class="section-title">Our Training Process</h2>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="process-card">
-                        <div class="process-number">01</div>
-                        <h4>Assessment</h4>
-                        <p>We evaluate your specific needs and requirements</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="process-card">
-                        <div class="process-number">02</div>
-                        <h4>Planning</h4>
-                        <p>Customized training program development</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="process-card">
-                        <div class="process-number">03</div>
-                        <h4>Training</h4>
-                        <p>Practical hands-on training sessions</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="process-card">
-                        <div class="process-number">04</div>
-                        <h4>Certification</h4>
-                        <p>Professional certification upon completion</p>
-                    </div>
-                </div>
-            </div>
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal "><span class="eyebrow">How it works</span><h2 class="section-title">Our training process</h2></div>
+        <div class="grid grid--4">
+          <div class="step reveal" data-delay="0"><span class="step__num">01</span><h3>Assessment</h3><p>We evaluate your specific needs and requirements.</p></div>
+          <div class="step reveal" data-delay="1"><span class="step__num">02</span><h3>Planning</h3><p>We develop a customised training program.</p></div>
+          <div class="step reveal" data-delay="2"><span class="step__num">03</span><h3>Training</h3><p>Practical, hands-on training sessions.</p></div>
+          <div class="step reveal" data-delay="3"><span class="step__num">04</span><h3>Certification</h3><p>Professional certification on completion.</p></div>
         </div>
+      </div>
     </section>
 
-    <!-- Training Facilities Section -->
-    <section class="facilities-section py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <span class="section-subtitle">Our Facilities</span>
-                <h2 class="section-title">State-of-the-Art Training Centers</h2>
-            </div>
-            <div class="facilities-slider">
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="facility-card">
-                            <img src="./assets/facility-1.jpg" alt="Training Room" class="img-fluid">
-                            <div class="facility-content">
-                                <h4>Modern Classrooms</h4>
-                                <p>Equipped with latest audio-visual facilities</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="facility-card">
-                            <img src="./assets/facility-2.jpg" alt="Practical Area" class="img-fluid">
-                            <div class="facility-content">
-                                <h4>Practical Training Area</h4>
-                                <p>Hands-on training equipment and space</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="facility-card">
-                            <img src="./assets/facility-3.jpg" alt="Simulation Room" class="img-fluid">
-                            <div class="facility-content">
-                                <h4>Simulation Rooms</h4>
-                                <p>Real-world scenario training environments</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div>
+            <h2>Need training for your team?</h2>
+            <p>Tell us about your site and headcount — we will recommend the right courses and schedule.</p>
+          </div>
+          <div class="cta-band__actions">
+            <a class="btn btn--light btn--lg" href="contact.html">Get a free quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
+            <a class="btn btn--ghost-light btn--lg" data-href="tel" href="tel:+923452008861"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg> Call us</a>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Footer Section -->
-    <footer class="footer-section">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row g-4">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-widget about-widget">
-                            <img src="./assets/fmz-logo.png" alt="FMZ Logo" class="footer-logo mb-3">
-                            <p>Leading provider of comprehensive safety training and equipment solutions, dedicated to
-                                creating safer workplaces across industries.</p>
-                            <div class="social-links">
-                                <a target="_blank"
-                                    href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a target="_blank" href="https://wa.me/923452008861"><i class="fab fa-whatsapp"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="footer-widget">
-                            <h4>Quick Links</h4>
-                            <ul class="footer-links">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Safety Training</a></li>
-                                <li><a href="#">Safety Equipment</a></li>
-                                <li><a href="#">Our Clients</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h4>Our Services</h4>
-                            <ul class="footer-links">
-                                <li><a href="#">Fire Safety Training</a></li>
-                                <li><a href="#">First Aid Training</a></li>
-                                <li><a href="#">Emergency Response</a></li>
-                                <li><a href="#">Safety Audits</a></li>
-                                <li><a href="#">Safety Equipment</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget contact-widget">
-                            <h4>Contact Info</h4>
-                            <div class="contact-info">
-                                <p><i class="fas fa-map-marker-alt"></i> Office # 123, ABC Building, XYZ Area, Karachi,
-                                    Pakistan</p>
-                                <p><i class="fas fa-phone"></i> +92 123 4567890</p>
-                                <p><i class="fas fa-envelope"></i> info@fmz.com</p>
-                                <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <footer class="footer">
+    <div class="container footer__top">
+      <div>
+        <a class="footer__logo" href="index.html"><img src="assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="112" height="40" loading="lazy"></a>
+        <p>Fire-safety training, safety equipment and consultancy — helping organisations across Pakistan build safer workplaces since 2014.</p>
+        <div class="social">
+          <a data-social="facebook" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook"></use></svg></a>
+        <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
+        <a data-social="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#instagram"></use></svg></a>
+        <a data-social="youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#youtube"></use></svg></a>
+          <a data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg></a>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <p class="mb-0">&copy; 2024 FMZ. All rights reserved.</p>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <div class="footer-bottom-links">
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Terms & Conditions</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer Section -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script>
-        // Navbar scroll behavior
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.custom-navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
-        });
-    </script>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul class="footer__links">
+          <li><a href="about.html">About us</a></li>
+          <li><a href="clients.html">Our clients</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <ul class="footer__links">
+          <li><a href="training.html">Fire safety training</a></li>
+          <li><a href="training.html">First aid training</a></li>
+          <li><a href="training.html">Emergency response</a></li>
+          <li><a href="equipments.html">Safety equipment</a></li>
+          <li><a href="contact.html?subject=Safety%20audit%20request">Safety audits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Get in touch</h3>
+        <ul class="footer__contact">
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#map-pin"></use></svg><span data-setting="address">Karachi, Pakistan</span></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#phone"></use></svg><a data-href="tel" href="tel:+923452008861" data-setting="phone">+92 345 2008861</a></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#mail"></use></svg><a data-href="mailto" href="mailto:info@fmz.com" data-setting="email">info@fmz.com</a></li>
+          <li><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clock"></use></svg><span data-setting="hours">Mon – Sat: 9:00 AM – 6:00 PM</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <span>&copy; <span data-year>2026</span> FMZ Fire &amp; Safety Engineering. All rights reserved.</span>
+        <span>Karachi, Pakistan</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="fab-whatsapp" data-href="whatsapp" href="https://wa.me/923452008861" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#whatsapp"></use></svg></a>
+  <button class="to-top" type="button" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#arrow-up"></use></svg></button>
 </body>
-
 </html>
