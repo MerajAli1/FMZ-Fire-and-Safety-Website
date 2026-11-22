@@ -174,8 +174,33 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .header.is-scrolled { box-shadow: 0 8px 30px -18px rgba(15, 23, 42, .35); border-bottom-color: var(--line); }
 .header .container { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: var(--header-h); }
-.brand { display: flex; align-items: center; flex-shrink: 0; }
+.brand { display: flex; align-items: center; gap: .7rem; flex-shrink: 0; }
 .brand img { height: 46px; width: auto; }
+.brand__text {
+  /* Matches the FMZ signboard: bold serif in the logo's blue */
+  padding-left: .75rem; border-left: 2px solid var(--line);
+  font-family: 'Tinos', 'Times New Roman', Times, Georgia, serif; font-weight: 700;
+  font-size: 1.3rem; line-height: 1.1; color: #3f51a0; letter-spacing: 0; white-space: nowrap;
+}
+
+/* Stacked lockup (footer here; phones in the media query below): "Engineering" is letter-spaced so both
+   lines end at exactly the same width, with a flame-coloured divider from the logo. */
+.footer__logo .brand__text {
+  position: relative; display: flex; flex-direction: column; gap: .12em;
+  border-left: 0; padding-left: .8rem; line-height: 1; white-space: nowrap; max-width: none;
+}
+.footer__logo .brand__text::before {
+  content: ''; position: absolute; left: 0; top: 4%; bottom: 4%; width: 3px; border-radius: 3px;
+  background: linear-gradient(180deg, #f6c343, #f08a24 45%, var(--brand));
+}
+.footer__logo .brand__l1 { font-size: 1em; }
+.footer__logo .brand__l2 { font-size: .77em; letter-spacing: .078em; margin-right: -.078em; }
+@media (max-width: 600px) {
+  .header .brand__text { position: relative; display: flex; flex-direction: column; gap: .12em; border-left: 0; padding-left: .7rem; line-height: 1; font-size: 1.32rem; }
+  .header .brand__text::before { content: ''; position: absolute; left: 0; top: 4%; bottom: 4%; width: 3px; border-radius: 3px; background: linear-gradient(180deg, #f6c343, #f08a24 45%, var(--brand)); }
+  .header .brand__l2 { font-size: .77em; letter-spacing: .078em; margin-right: -.078em; }
+}
+@media (min-width: 1081px) and (max-width: 1280px) { .brand__text { white-space: normal; max-width: 7em; font-size: 1.02rem; } .nav__link { padding: .55rem .5rem; } .header .container { gap: 1rem; } .header__cta { margin-left: .25rem; } }
 
 .nav { display: flex; align-items: center; gap: .25rem; margin-left: auto; }
 .nav__link {
@@ -222,11 +247,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   }
   .nav-backdrop.is-open { opacity: 1; visibility: visible; }
   body.nav-open { overflow: hidden; }
-  /* backdrop-filter would make the header the containing block of the fixed nav panel */
-  body.nav-open .header { backdrop-filter: none; -webkit-backdrop-filter: none; background: #fff; }
+  /* No backdrop-filter here: it would make the header the containing block of the fixed,
+     off-screen nav panel, which then widens the page on phones. */
+  .header { backdrop-filter: none; -webkit-backdrop-filter: none; background: #fff; }
 }
 @media (min-width: 1081px) { .nav-close, .nav-backdrop { display: none; } }
-@media (max-width: 480px) { .brand img { height: 40px; } :root { --header-h: 68px; } }
+@media (max-width: 480px) { .brand img { height: 38px; } .brand { gap: .5rem; } .header .brand__text { font-size: 1.22rem; padding-left: .6rem; } :root { --header-h: 68px; } }
 
 /* ---------- Hero slider ---------- */
 .hero {
@@ -619,8 +645,9 @@ textarea.input { resize: vertical; min-height: 140px; }
 .footer__top { padding: clamp(56px, 8vw, 88px) 0 48px; display: grid; gap: 40px; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; }
 @media (max-width: 960px) { .footer__top { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer__top { grid-template-columns: 1fr; } }
-.footer__logo { background: #fff; display: inline-block; padding: 10px 14px; border-radius: 12px; margin-bottom: 1.2rem; }
+.footer__logo { background: #fff; display: inline-flex; align-items: center; gap: .7rem; padding: 10px 16px 10px 14px; border-radius: 12px; margin-bottom: 1.2rem; }
 .footer__logo img { height: 40px; width: auto; }
+.footer__logo .brand__text { font-size: 1.3rem; }
 .footer h3 { color: #fff; font-size: 1rem; margin-bottom: 1.2rem; letter-spacing: .02em; }
 .footer__links { display: grid; gap: .65rem; }
 .footer__links a { transition: color .2s, padding-left .2s; }
