@@ -13,6 +13,47 @@ const order = {
 };
 
 export const SCHEMAS = {
+  posts: {
+    collection: 'posts',
+    title: 'Blog posts',
+    singular: 'article',
+    navIcon: 'pencil',
+    description: 'Articles on the Blog page. Regular, helpful articles bring visitors from Google — aim for 1–2 per month.',
+    layout: 'cards',
+    imageField: 'coverImage',
+    titleField: 'title',
+    subtitle: (it) => [it.date, it.category].filter(Boolean).join(' · '),
+    searchFields: ['title', 'excerpt', 'category', 'content'],
+    filterField: 'category',
+    uniqueSlug: true,
+    viewUrl: (it) => `../article.html?slug=${encodeURIComponent(it.slug || '')}`,
+    publicPage: '../blog.html',
+    fields: [
+      { name: 'title', label: 'Article title', type: 'text', required: true, max: 120, full: true, placeholder: 'e.g. Which fire extinguisher do you need? A simple guide for businesses' },
+      {
+        name: 'slug', label: 'Web address', type: 'slug', from: 'title', required: true, full: true, prefix: 'fmzfiresafety.com/article.html?slug=',
+        help: 'Created from the title automatically. Keep it short, lowercase and with keywords. Avoid changing it after publishing.',
+      },
+      { name: 'coverImage', label: 'Cover image', type: 'image', maxWidth: 1600, full: true, hint: 'Shown at the top of the article and when shared on WhatsApp/Facebook. Landscape images work best.' },
+      {
+        name: 'category', label: 'Category', type: 'category', required: true,
+        suggestions: ['fire-safety', 'workplace-safety', 'first-aid', 'equipment', 'compliance', 'news'],
+      },
+      { name: 'date', label: 'Publish date', type: 'date', default: 'today' },
+      { name: 'author', label: 'Author', type: 'text', max: 80, default: 'FMZ Safety Team' },
+      { name: 'excerpt', label: 'Short summary', type: 'textarea', required: true, max: 300, full: true, rows: 2, help: 'One or two sentences shown on the blog page and in search results.' },
+      {
+        name: 'content', label: 'Article', type: 'markdown', required: true, full: true, rows: 18,
+        placeholder: 'Write your article here. Use the toolbar for headings, lists and images.\n\n## A clear heading\nShort paragraphs are easier to read.\n\n- Bullet point\n- Another point',
+      },
+      { name: 'tags', label: 'Tags (one per line)', type: 'list', rows: 2, full: true, placeholder: 'fire extinguisher\nkarachi' },
+      { name: 'metaTitle', label: 'Google title (optional)', type: 'text', max: 90, counter: 60, full: true, help: 'Leave empty to use the article title. Include the main keyword, e.g. “Fire Extinguisher Types Explained (Pakistan Guide)”.' },
+      { name: 'metaDescription', label: 'Google description (optional)', type: 'text', max: 200, counter: 160, full: true, help: 'Leave empty to use the short summary.' },
+      { name: 'seo', label: 'Search preview', type: 'seopreview' },
+      { name: 'published', label: 'Published (visible on website)', type: 'toggle', default: true },
+    ],
+  },
+
   equipments: {
     collection: 'equipments',
     title: 'Equipment',
@@ -26,6 +67,7 @@ export const SCHEMAS = {
     searchFields: ['title', 'description', 'category'],
     filterField: 'category',
     featured: true,
+    viewUrl: (it) => `../product.html?id=${encodeURIComponent(it.id)}`,
     publicPage: '../equipments.html',
     fields: [
       { name: 'imageUrl', label: 'Product photo', type: 'image', required: true, maxWidth: 1600, full: true },

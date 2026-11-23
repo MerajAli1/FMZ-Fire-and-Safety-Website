@@ -56,6 +56,22 @@ Open `/admin/` (or `/admin/login.html`) and sign in with the admin account.
 3. **Clients** → *Import built-in clients*; **Training programs** → *Import default programs*.
 4. Upload photos in **Gallery**.
 
+## SEO
+
+- Every page has a unique title and description, a canonical URL (`https://fmzfiresafety.com/...`),
+  social-share tags with an absolute preview image, and structured data (LocalBusiness, breadcrumbs;
+  Service + FAQ on service pages; BlogPosting on articles; Product on equipment pages).
+- Service landing pages: `services.html` plus one page per service (`fire-safety-training-karachi.html`, …).
+  The service list lives in `SERVICES` in `js/config.js`.
+- **Blog:** write articles in the dashboard under *Blog posts* (Markdown editor with image upload, web-address
+  field, Google preview). They appear on `blog.html`, at `article.html?slug=…`, and on the homepage.
+- **Equipment pages:** each item has its own page at `product.html?id=…`.
+- **Sitemap:** `sitemap.xml` lists the static pages. After publishing articles or equipment, use
+  *Settings → SEO & sitemap → Download sitemap.xml*, upload it to the site root (replacing the old one) and
+  resubmit it in Google Search Console.
+- If you change the domain, update `SITE_URL` in `js/config.js`, the URLs in `sitemap.xml` / `robots.txt`,
+  and the canonical/OG tags in the HTML pages.
+
 ## Adding another admin
 
 1. Create the user in Firebase console → Authentication.

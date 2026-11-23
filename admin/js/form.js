@@ -2,6 +2,8 @@
 import { esc, icon, assetUrl, toast } from './ui.js';
 import { processAndUpload } from './upload.js';
 import { categoryLabel, slugify } from '../../js/lib/dom.js';
+import { renderMarkdown, markdownToText, readingMinutes } from '../../js/lib/markdown.js';
+import { SITE_URL } from '../../js/config.js';
 
 let uid = 0;
 
@@ -110,8 +112,168 @@ function renderField(f, value, ctx = {}) {
           <div><button type="button" class="link-btn" data-url-toggle>…or paste an image URL</button></div>
           <input class="input" type="url" data-url-input placeholder="https://res.cloudinary.com/…" hidden>
         </div>`);
+    case 'date': {
+      const d = value || (f.default === 'today' ? new Date().toISOString().slice(0, 10) : '');
+      return wrap(`<input class="input" type="date" id="${id}" name="${f.name}" value="${esc(d)}">`);
+    }
+    case 'slug':
+      return wrap(`<div class="slug-field"><span class="slug-field__prefix">${esc(f.prefix || '')}</span>
+        <input class="input" id="${id}" name="${f.name}" value="${esc(v)}" data-slug-from="${f.from || ''}" ${v ? '' : 'data-auto="1"'} maxlength="90" placeholder="auto-generated-from-title"></div>`);
+    case 'markdown':
+      return wrap(`
+        <div class="md-editor" data-md>
+          <div class="md-toolbar" role="toolbar" aria-label="Formatting">
+            <button type="button" data-md-cmd="h2" title="Heading">H2</button>
+            <button type="button" data-md-cmd="h3" title="Sub-heading">H3</button>
+            <button type="button" data-md-cmd="bold" title="Bold"><strong>B</strong></button>
+            <button type="button" data-md-cmd="italic" title="Italic"><em>I</em></button>
+            <button type="button" data-md-cmd="link" title="Link">${icon('external', 'icon--sm')} Link</button>
+            <button type="button" data-md-cmd="ul" title="Bullet list">• List</button>
+            <button type="button" data-md-cmd="ol" title="Numbered list">1. List</button>
+            <button type="button" data-md-cmd="quote" title="Quote">“ Quote</button>
+            <label class="md-toolbar__upload" title="Upload an image into the article">${icon('image', 'icon--sm')} Image<input type="file" accept="image/*" data-md-image hidden></label>
+            <span class="md-toolbar__spacer"></span>
+            <button type="button" data-md-tab="write" class="is-active">Write</button>
+            <button type="button" data-md-tab="preview">Preview</button>
+          </div>
+          <textarea class="textarea md-input" id="${id}" name="${f.name}" rows="${f.rows || 16}" placeholder="${esc(f.placeholder || '')}">${esc(v)}</textarea>
+          <div class="md-preview prose" hidden></div>
+          <div class="md-status"><span data-md-count></span><span data-md-upload></span></div>
+        </div>`);
+    case 'seopreview':
+      return `<div class="field full" data-field="${f.name}"><div class="label">${esc(f.label)}</div>
+        <div class="serp" data-serp><div class="serp__url"></div><div class="serp__title"></div><div class="serp__desc"></div></div>
+        <div class="field__help">Roughly how this article can appear in Google search results.</div></div>`;
     default:
-      return wrap(`<input class="input" id="${id}" name="${f.name}" value="${esc(v)}" ${f.max ? `maxlength="${f.max}"` : ''} placeholder="${esc(f.placeholder || '')}">`);
+      return wrap(`<input class="input" id="${id}" name="${f.name}" value="${esc(v)}" ${f.max ? `maxlength="${f.max}"` : ''} placeholder="${esc(f.placeholder || '')}">${f.counter ? `<div class="field__help" data-counter="${f.counter}"></div>` : ''}`);
+  }
+}
+
+/* ---------- Markdown editor ---------- */
+function setupMarkdown(box, state) {
+  const ta = box.querySelector('textarea');
+  const preview = box.querySelector('.md-preview');
+  const count = box.querySelector('[data-md-count]');
+  const uploadNote = box.querySelector('[data-md-upload]');
+  const updateCount = () => {
+    const words = markdownToText(ta.value).split(' ').filter(Boolean).length;
+    count.textContent = `${words} words · ${readingMinutes(ta.value)} min read${words && words < 300 ? ' · tip: 600+ words usually rank better' : ''}`;
+  };
+  const changed = () => ta.dispatchEvent(new Event('input', { bubbles: true }));
+  const wrapSel = (before, after = before, placeholder = 'text') => {
+    const { selectionStart: a, selectionEnd: b, value } = ta;
+    const sel = value.slice(a, b) || placeholder;
+    ta.setRangeText(before + sel + after, a, b, 'end');
+    ta.focus();
+    ta.selectionStart = a + before.length;
+    ta.selectionEnd = a + before.length + sel.length;
+  };
+  const prefixLines = (prefix) => {
+    const { selectionStart: a, selectionEnd: b, value } = ta;
+    const start = value.lastIndexOf('\n', a - 1) + 1;
+    const block = value.slice(start, b) || 'Text';
+    const lines = block.split('\n').map((l, n) => (typeof prefix === 'function' ? prefix(n) : prefix) + l.replace(/^(#{1,4}\s|[-*]\s|\d+\.\s|>\s?)/, ''));
+    ta.setRangeText(lines.join('\n'), start, b, 'end');
+    ta.focus();
+  };
+  const insertBlock = (text) => {
+    const { selectionStart: a, value } = ta;
+    const pre = a > 0 && value[a - 1] !== '\n' ? '\n\n' : '';
+    ta.setRangeText(`${pre}${text}\n`, a, ta.selectionEnd, 'end');
+    ta.focus();
+    changed();
+  };
+
+  box.addEventListener('click', (e) => {
+    const cmd = e.target.closest('[data-md-cmd]')?.dataset.mdCmd;
+    const tab = e.target.closest('[data-md-tab]')?.dataset.mdTab;
+    if (cmd) {
+      if (cmd === 'bold') wrapSel('**');
+      else if (cmd === 'italic') wrapSel('*');
+      else if (cmd === 'h2') prefixLines('## ');
+      else if (cmd === 'h3') prefixLines('### ');
+      else if (cmd === 'ul') prefixLines('- ');
+      else if (cmd === 'ol') prefixLines((n) => `${n + 1}. `);
+      else if (cmd === 'quote') prefixLines('> ');
+      else if (cmd === 'link') {
+        const href = prompt('Link address (e.g. https://… or contact.html):', 'https://');
+        if (href) wrapSel('[', `](${href.trim()})`, 'link text');
+      }
+      changed();
+    }
+    if (tab) {
+      box.querySelectorAll('[data-md-tab]').forEach((b) => b.classList.toggle('is-active', b.dataset.mdTab === tab));
+      const showPreview = tab === 'preview';
+      if (showPreview) {
+        preview.innerHTML = renderMarkdown(ta.value) || '<p style="color:var(--muted)">Nothing to preview yet.</p>';
+        preview.querySelectorAll('img').forEach((img) => {
+          const src = img.getAttribute('src');
+          if (!/^https?:/.test(src)) img.src = assetUrl(src);
+        });
+      }
+      preview.hidden = !showPreview;
+      ta.hidden = showPreview;
+    }
+  });
+
+  box.querySelector('[data-md-image]').addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    e.target.value = '';
+    if (!file) return;
+    const suggested = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+    const alt = (prompt('Short description of the image (helps Google and visually impaired readers):', suggested) || '').replace(/[[\]]/g, '');
+    state.uploading += 1;
+    state.onChange?.();
+    uploadNote.textContent = ' · Uploading image…';
+    try {
+      const url = await processAndUpload(file, { maxWidth: 1600 }, (p) => { uploadNote.textContent = ` · Uploading image… ${Math.round(p * 100)}%`; });
+      insertBlock(`![${alt}](${url})`);
+      uploadNote.textContent = ' · Image inserted';
+    } catch (err) {
+      toast(err.message, 'error', 6000);
+      uploadNote.textContent = '';
+    } finally {
+      state.uploading -= 1;
+      state.onChange?.();
+    }
+  });
+  ta.addEventListener('input', updateCount);
+  updateCount();
+}
+
+/* ---------- Slug, character counters, search preview ---------- */
+function setupExtras(form) {
+  form.querySelectorAll('[data-slug-from]').forEach((input) => {
+    const source = form.elements[input.dataset.slugFrom];
+    if (!source) return;
+    source.addEventListener('input', () => { if (input.dataset.auto) input.value = slugify(source.value).slice(0, 80); });
+    input.addEventListener('input', () => { delete input.dataset.auto; });
+    input.addEventListener('blur', () => { input.value = slugify(input.value); });
+  });
+  form.querySelectorAll('[data-counter]').forEach((help) => {
+    const input = help.parentElement.querySelector('input');
+    const max = Number(help.dataset.counter);
+    const update = () => {
+      const n = input.value.trim().length;
+      help.textContent = `${n} / ${max} characters${n > max ? ' — may be cut off in Google' : ''}`;
+      help.style.color = n > max ? '#b45309' : '';
+    };
+    input.addEventListener('input', update);
+    update();
+  });
+  const serp = form.querySelector('[data-serp]');
+  if (serp) {
+    const val = (name) => form.elements[name]?.value?.trim() || '';
+    const update = () => {
+      const title = val('metaTitle') || val('title') || 'Article title';
+      const desc = val('metaDescription') || val('excerpt') || markdownToText(val('content')).slice(0, 160)
+        || 'Add a short summary so people know what the article is about.';
+      serp.querySelector('.serp__url').textContent = `${SITE_URL.replace('https://', '')} › article › ${slugify(val('slug') || val('title')) || '…'}`;
+      serp.querySelector('.serp__title').textContent = `${title} | FMZ Fire & Safety`.slice(0, 70);
+      serp.querySelector('.serp__desc').textContent = desc.length > 160 ? `${desc.slice(0, 157)}…` : desc;
+    };
+    form.addEventListener('input', update);
+    update();
   }
 }
 
@@ -186,6 +348,8 @@ export function buildForm(fields, values = {}, ctx = {}) {
   form.innerHTML = fields.map((f) => renderField(f, values[f.name], ctx)).join('');
   bindCategoryControls(form);
   const state = { uploading: 0, onChange: null };
+  form.querySelectorAll('[data-md]').forEach((box) => setupMarkdown(box, state));
+  setupExtras(form);
 
   fields.filter((f) => f.type === 'image').forEach((f) => {
     setupImageField(form.querySelector(`[data-image-field="${f.name}"]`), f, state);
@@ -195,7 +359,10 @@ export function buildForm(fields, values = {}, ctx = {}) {
     const out = {};
     fields.forEach((f) => {
       const el = form.elements[f.name];
+      if (f.type === 'seopreview') return;
       if (f.type === 'toggle') out[f.name] = el.checked;
+      else if (f.type === 'slug') out[f.name] = slugify(el.value);
+      else if (f.type === 'markdown') out[f.name] = el.value.replace(/\s+$/, '');
       else if (f.type === 'icon') out[f.name] = form.querySelector(`input[name="${f.name}"]:checked`)?.value || f.default || '';
       else if (f.type === 'number') out[f.name] = el.value === '' ? null : Number(el.value);
       else if (f.type === 'list') out[f.name] = el.value.split('\n').map((s) => s.trim()).filter(Boolean);

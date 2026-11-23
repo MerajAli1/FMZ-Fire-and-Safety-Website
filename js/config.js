@@ -61,6 +61,12 @@ export const CATEGORY_LABELS = {
   pharma: 'Pharmaceutical',
   fmcg: 'FMCG',
   packaging: 'Packaging',
+  // blog
+  'fire-safety': 'Fire Safety',
+  'workplace-safety': 'Workplace Safety',
+  equipment: 'Equipment',
+  compliance: 'Compliance',
+  news: 'News & Updates',
   // gallery
   training: 'Training',
   installation: 'Installation',
@@ -72,4 +78,24 @@ export const CATEGORY_LABELS = {
 export const ICON_CHOICES = [
   'fire-extinguisher', 'flame', 'first-aid', 'heart-pulse', 'hard-hat', 'ladder',
   'flask', 'alarm', 'shield', 'clipboard-check', 'wrench', 'users', 'award', 'graduation',
+];
+
+/** Live website address — used for canonical links, social previews and the sitemap. */
+export const SITE_URL = 'https://fmzfiresafety.com';
+
+/** Service landing pages (static HTML files in the site root). */
+export const SERVICES = [
+  { slug: 'fire-safety-training-karachi', title: 'Fire Safety Training', icon: 'fire-extinguisher', short: 'Practical fire prevention, extinguisher handling and evacuation training.' },
+  { slug: 'first-aid-training-karachi', title: 'First Aid & CPR Training', icon: 'first-aid', short: 'Workplace first aid, CPR and emergency medical response courses.' },
+  { slug: 'emergency-response-training-karachi', title: 'Emergency Response Training', icon: 'heart-pulse', short: 'Emergency planning, response teams, drills and crisis coordination.' },
+  { slug: 'fire-extinguishers-karachi', title: 'Fire Extinguishers & Safety Equipment', icon: 'package', short: 'Extinguishers, PPE, first-aid kits and emergency equipment.' },
+  { slug: 'fire-safety-audit-karachi', title: 'Fire Safety Audits', icon: 'clipboard-check', short: 'Site inspections that find hazards and close compliance gaps.' },
+];
+
+/** Static pages for sitemap.xml (path → priority). Blog posts and equipment are added dynamically. */
+export const SITE_PAGES = [
+  ['', 1.0], ['services.html', 0.9],
+  ...SERVICES.map((s) => [`${s.slug}.html`, 0.9]),
+  ['training.html', 0.8], ['equipments.html', 0.8], ['about.html', 0.7], ['clients.html', 0.7],
+  ['blog.html', 0.7], ['gallery.html', 0.6], ['contact.html', 0.8],
 ];

@@ -1,7 +1,26 @@
 /** Site settings: contact details, social links, homepage stats, announcement, map. */
-import { db, auth, doc, getDoc, setDoc, serverTimestamp, sendPasswordResetEmail } from './firebase.js';
+import {
+  db, auth, doc, getDoc, setDoc, serverTimestamp, sendPasswordResetEmail, collection, getDocs, toDate,
+} from './firebase.js';
 import { esc, icon, $, $$, toast, setBusy, friendlyError } from './ui.js';
-import { DEFAULT_SETTINGS } from '../../js/config.js';
+import { DEFAULT_SETTINGS, SITE_URL, SITE_PAGES } from '../../js/config.js';
+
+/** Build sitemap.xml: static pages + published blog posts + published equipment. */
+export async function buildSitemap() {
+  const today = new Date().toISOString().slice(0, 10);
+  const day = (v) => (toDate(v) || new Date()).toISOString().slice(0, 10);
+  const xmlEsc = (u) => u.replace(/&/g, '&amp;');
+  const entries = SITE_PAGES.map(([path, priority]) => ({ loc: `${SITE_URL}/${path}`, lastmod: today, priority }));
+  const [posts, equipment] = await Promise.all([getDocs(collection(db, 'posts')), getDocs(collection(db, 'equipments'))]);
+  posts.docs.map((d) => d.data()).filter((p) => p.published !== false && p.slug).forEach((p) => {
+    entries.push({ loc: `${SITE_URL}/article.html?slug=${encodeURIComponent(p.slug)}`, lastmod: day(p.updatedAt || p.createdAt), priority: 0.7 });
+  });
+  equipment.docs.filter((d) => d.data().published !== false).forEach((d) => {
+    entries.push({ loc: `${SITE_URL}/product.html?id=${encodeURIComponent(d.id)}`, lastmod: day(d.data().updatedAt || d.data().createdAt), priority: 0.6 });
+  });
+  const body = entries.map((e) => `  <url>\n    <loc>${xmlEsc(e.loc)}</loc>\n    <lastmod>${e.lastmod}</lastmod>\n    <priority>${e.priority.toFixed(1)}</priority>\n  </url>`).join('\n');
+  return { xml: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`, count: entries.length };
+}
 
 const SECTIONS = [
   {
@@ -85,6 +104,19 @@ export function renderSettings(container) {
       </form>
       <section class="card" style="margin-top:18px">
         <div class="settings-section">
+          <div><h2>SEO & sitemap</h2><p>The sitemap tells Google about every page, article and product on your website.</p></div>
+          <div>
+            <p style="margin-bottom:12px">After publishing new articles or equipment, download a fresh <strong>sitemap.xml</strong>, upload it to your website's main folder (replacing the old one), then click <em>Resubmit</em> in Google Search Console → Sitemaps.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <button class="btn" type="button" data-sitemap>${icon('download')} Download sitemap.xml</button>
+              <a class="btn btn--secondary" href="https://search.google.com/search-console" target="_blank" rel="noopener">${icon('external')} Open Search Console</a>
+            </div>
+            <p class="field__help" data-sitemap-note style="margin-top:10px"></p>
+          </div>
+        </div>
+      </section>
+      <section class="card" style="margin-top:18px">
+        <div class="settings-section">
           <div><h2>Account & security</h2><p>Signed in as <strong>${esc(auth.currentUser?.email || '')}</strong>.</p></div>
           <div>
             <p style="margin-bottom:12px">To change your password, we'll email you a secure reset link.</p>
@@ -115,6 +147,22 @@ export function renderSettings(container) {
         dirty.textContent = '';
       } catch (err) {
         toast(friendlyError(err), 'error', 7000);
+      } finally { setBusy(btn, false); }
+    });
+
+    $('[data-sitemap]', container).addEventListener('click', async (e) => {
+      const btn = e.currentTarget;
+      setBusy(btn, true, 'Building…');
+      try {
+        const { xml, count } = await buildSitemap();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([xml], { type: 'application/xml' }));
+        a.download = 'sitemap.xml';
+        a.click();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        $('[data-sitemap-note]', container).textContent = `sitemap.xml downloaded with ${count} pages. Upload it to the website root, e.g. ${SITE_URL}/sitemap.xml`;
+      } catch (err) {
+        toast(friendlyError(err), 'error');
       } finally { setBusy(btn, false); }
     });
 

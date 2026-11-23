@@ -11,6 +11,32 @@ function img(url, alt, { w = 800, sizes = '(max-width: 640px) 100vw, 400px', laz
   return `<img src="${esc(src)}"${srcset ? ` srcset="${esc(srcset)}" sizes="${sizes}"` : ''} alt="${esc(alt)}"${lazy ? ' loading="lazy" decoding="async"' : ''}${cls ? ` class="${cls}"` : ''}>`;
 }
 
+export const productHref = (item) => `product.html?id=${encodeURIComponent(item.id)}`;
+export const postHref = (post) => `article.html?slug=${encodeURIComponent(post.slug || post.id)}`;
+
+export function formatDate(value) {
+  const d = new Date(typeof value === 'number' ? value : String(value || ''));
+  return Number.isNaN(d.getTime()) ? '' : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+export function postCard(post, index = 0) {
+  return `
+  <article class="post-card reveal" data-delay="${index % 3}">
+    <a class="post-card__media" href="${postHref(post)}" tabindex="-1" aria-hidden="true">
+      ${post.coverImage ? img(post.coverImage, post.title, { w: 700 }) : `<span class="post-card__placeholder">${icon('flame', 'icon--lg')}</span>`}
+    </a>
+    <div class="post-card__body">
+      <div class="post-card__meta">
+        ${post.category ? `<span class="post-card__cat">${esc(categoryLabel(post.category))}</span>` : ''}
+        <span>${esc(formatDate(post.date || post.createdAt))}</span>
+      </div>
+      <h3><a href="${postHref(post)}">${esc(post.title)}</a></h3>
+      <p>${esc(post.excerpt)}</p>
+      <a class="link-arrow" href="${postHref(post)}">Read article ${icon('arrow-right')}</a>
+    </div>
+  </article>`;
+}
+
 export function inquiryHref(subject) {
   return `contact.html?subject=${encodeURIComponent(subject)}`;
 }
@@ -24,10 +50,10 @@ export function productCard(item, index) {
       <button class="product-card__zoom" type="button" data-product="${esc(item.id)}" aria-label="View details for ${esc(item.title)}">${icon('expand', 'icon--sm')}</button>
     </div>
     <div class="product-card__body">
-      <h3>${esc(item.title)}</h3>
+      <h3><a href="${productHref(item)}">${esc(item.title)}</a></h3>
       <p>${esc(item.description)}</p>
       <div class="product-card__actions">
-        <button type="button" class="link-arrow" style="background:none;border:0;padding:0" data-product="${esc(item.id)}">Details ${icon('arrow-right')}</button>
+        <a class="link-arrow" href="${productHref(item)}">Details ${icon('arrow-right')}</a>
         <a class="btn btn--sm btn--outline" href="${inquiryHref(`Equipment inquiry: ${item.title}`)}">Get a quote</a>
       </div>
     </div>

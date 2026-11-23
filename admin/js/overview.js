@@ -48,7 +48,7 @@ export function renderOverview(container) {
             <a class="quick-action" href="#/gallery?upload">${icon('upload')} Upload photos</a>
             <a class="quick-action" href="#/clients?new">${icon('building')} Add client</a>
             <a class="quick-action" href="#/slides?new">${icon('slides')} New hero slide</a>
-            <a class="quick-action" href="#/testimonials?new">${icon('message')} Add testimonial</a>
+            <a class="quick-action" href="#/posts?new">${icon('pencil')} Write an article</a>
             <a class="quick-action" href="#/settings">${icon('settings')} Site settings</a>
           </div>
         </section>
@@ -95,7 +95,7 @@ export function renderOverview(container) {
 
   // Content counts + checklist
   (async () => {
-    const names = ['equipments', 'clients', 'gallery', 'trainings', 'team', 'testimonials', 'slides'];
+    const names = ['equipments', 'clients', 'gallery', 'trainings', 'team', 'testimonials', 'slides', 'posts'];
     const counts = {};
     await Promise.all(names.map(async (n) => {
       try { counts[n] = (await getCountFromServer(collection(db, n))).data().count; } catch { counts[n] = null; }
@@ -113,6 +113,7 @@ export function renderOverview(container) {
       [counts.testimonials > 0, 'Add a client testimonial', '#/testimonials'],
       [counts.team > 0, 'Introduce your team on the About page', '#/team'],
       [Boolean(s.mapEmbed), 'Add a Google Map to the Contact page', '#/settings'],
+      [counts.posts > 0, 'Publish your first blog article (helps Google rankings)', '#/posts?new'],
     ];
     const done = tasks.filter((t) => t[0]).length;
     set('progress', `${done}/${tasks.length} done`);

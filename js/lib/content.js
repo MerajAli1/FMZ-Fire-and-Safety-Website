@@ -10,6 +10,12 @@ export function mergeClients(firestoreClients, settings) {
   return [...BUILTIN_CLIENTS.filter((b) => !names.has(b.name.toLowerCase())), ...fromDb];
 }
 
+/** Published blog posts, newest first (by article date, then creation time). */
+export function publishedPosts(posts) {
+  const time = (p) => Date.parse(p.date || '') || p.createdAt || 0;
+  return (posts || []).filter((p) => p.published !== false && p.title && p.slug).sort((a, b) => time(b) - time(a));
+}
+
 /** Firestore trainings replace the defaults as soon as any exist. */
 export function resolveTrainings(firestoreTrainings) {
   const raw = firestoreTrainings || [];

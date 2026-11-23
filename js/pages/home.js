@@ -1,9 +1,11 @@
 import { observeReveals, getSettings } from '../site.js';
 import { useData, publishedSorted } from '../lib/store.js';
 import { $ } from '../lib/dom.js';
-import { mergeClients, resolveTrainings } from '../lib/content.js';
+import { mergeClients, resolveTrainings, publishedPosts } from '../lib/content.js';
 import { HeroSlider } from '../components/hero-slider.js';
-import { productCard, clientCard, programCard, galleryItem, testimonialCard, emptyState } from '../components/cards.js';
+import {
+  productCard, clientCard, programCard, galleryItem, testimonialCard, postCard, emptyState,
+} from '../components/cards.js';
 import { openProduct } from '../components/product-modal.js';
 import { openLightbox } from '../components/lightbox.js';
 
@@ -79,4 +81,14 @@ useData({ testimonials: 'col:testimonials' }, ({ testimonials }) => {
   show(testimonialSection, list.length > 0);
   testimonialGrid.innerHTML = list.map(testimonialCard).join('');
   observeReveals(testimonialGrid);
+});
+
+/* Latest blog posts */
+const postsSection = $('#home-posts-section');
+const postsGrid = $('#home-posts');
+useData({ posts: 'col:posts' }, ({ posts }) => {
+  const list = publishedPosts(posts).slice(0, 3);
+  show(postsSection, list.length > 0);
+  postsGrid.innerHTML = list.map(postCard).join('');
+  observeReveals(postsGrid);
 });

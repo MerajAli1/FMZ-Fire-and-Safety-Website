@@ -17,7 +17,7 @@ const ROUTES = {
 
 const NAV = [
   { label: null, items: ['overview', 'inquiries'] },
-  { label: 'Website content', items: ['equipments', 'clients', 'gallery', 'trainings', 'slides', 'testimonials', 'team'] },
+  { label: 'Website content', items: ['posts', 'equipments', 'clients', 'gallery', 'trainings', 'slides', 'testimonials', 'team'] },
   { label: 'Configuration', items: ['settings'] },
 ];
 

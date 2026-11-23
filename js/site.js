@@ -16,7 +16,10 @@ function initNav() {
 
   const page = document.body.dataset.page;
   $$('.nav__link', nav).forEach((a) => {
-    if (a.dataset.page === page) { a.classList.add('is-active'); a.setAttribute('aria-current', 'page'); }
+    if (a.dataset.page.split(' ').includes(page)) {
+      a.classList.add('is-active');
+      if (a.dataset.page.split(' ')[0] === page) a.setAttribute('aria-current', 'page');
+    }
   });
 
   const setOpen = (open) => {

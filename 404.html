@@ -5,11 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Page not found | FMZ Fire &amp; Safety Engineering</title>
   <meta name="description" content="The page you are looking for could not be found.">
+  <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#0b1f3a">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="FMZ Fire &amp; Safety Engineering">
+  <meta property="og:locale" content="en_PK">
   <meta property="og:title" content="Page not found | FMZ Fire &amp; Safety Engineering">
   <meta property="og:description" content="The page you are looking for could not be found.">
+  <meta property="og:image" content="https://fmzfiresafety.com/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Page not found | FMZ Fire &amp; Safety Engineering">
+  <meta name="twitter:description" content="The page you are looking for could not be found.">
+  <meta name="twitter:image" content="https://fmzfiresafety.com/assets/img/og-image.jpg">
   <link rel="icon" href="assets/img/icon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="assets/img/icon-180.png">
   <link rel="manifest" href="site.webmanifest">
@@ -20,6 +29,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&family=Tinos:wght@700&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LocalBusiness","@id":"https://fmzfiresafety.com/#business","name":"FMZ Fire & Safety Engineering","alternateName":"FMZ Fire Safety","description":"Fire safety training, first aid training, fire extinguishers and safety equipment, and fire safety audits in Karachi, Pakistan.","url":"https://fmzfiresafety.com/","logo":"https://fmzfiresafety.com/assets/img/icon-512.png","image":"https://fmzfiresafety.com/assets/img/og-image.jpg","telephone":"+92-345-2008861","foundingDate":"2014","address":{"@type":"PostalAddress","addressLocality":"Karachi","addressRegion":"Sindh","addressCountry":"PK"},"areaServed":[{"@type":"City","name":"Karachi"},{"@type":"Country","name":"Pakistan"}],"knowsAbout":["Fire safety training","First aid training","Emergency response","Fire extinguishers","Fire safety audits","Personal protective equipment"],"sameAs":["https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/"]},{"@type":"WebSite","@id":"https://fmzfiresafety.com/#website","url":"https://fmzfiresafety.com/","name":"FMZ Fire & Safety Engineering","publisher":{"@id":"https://fmzfiresafety.com/#business"}}]}</script>
   <script type="module" src="js/pages/notfound.js"></script>
 </head>
 <body data-page="404">
@@ -50,12 +60,23 @@
       </a>
       <nav id="site-nav" class="nav" aria-label="Main">
         <button class="nav-close" type="button" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#x"></use></svg></button>
-        <a class="nav__link" data-page="home" href="index.html">Home</a>
+        <a class="nav__link nav__link--mobile" data-page="home" href="index.html">Home</a>
         <a class="nav__link" data-page="about" href="about.html">About</a>
-        <a class="nav__link" data-page="training" href="training.html">Training</a>
-        <a class="nav__link" data-page="equipment" href="equipments.html">Equipment</a>
+        <div class="nav__item">
+          <a class="nav__link nav__link--parent" data-page="services service training" href="services.html">Services <svg class="icon nav__caret" aria-hidden="true"><use href="assets/icons.svg#chevron-down"></use></svg></a>
+          <div class="nav__menu">
+            <a href="fire-safety-training-karachi.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#fire-extinguisher"></use></svg><span>Fire Safety Training</span></a>
+            <a href="first-aid-training-karachi.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#first-aid"></use></svg><span>First Aid &amp; CPR Training</span></a>
+            <a href="emergency-response-training-karachi.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#heart-pulse"></use></svg><span>Emergency Response Training</span></a>
+            <a href="fire-extinguishers-karachi.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#package"></use></svg><span>Fire Extinguishers &amp; Safety Equipment</span></a>
+            <a href="fire-safety-audit-karachi.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#clipboard-check"></use></svg><span>Fire Safety Audits</span></a>
+            <a href="training.html"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#graduation"></use></svg><span>All training courses</span></a>
+          </div>
+        </div>
+        <a class="nav__link" data-page="equipment product" href="equipments.html">Equipment</a>
         <a class="nav__link" data-page="clients" href="clients.html">Clients</a>
         <a class="nav__link" data-page="gallery" href="gallery.html">Gallery</a>
+        <a class="nav__link" data-page="blog article" href="blog.html">Blog</a>
         <a class="nav__link" data-page="contact" href="contact.html">Contact</a>
         <div class="nav__mobile-extra">
           <a class="btn btn--block" href="contact.html">Get a free quote <svg class="icon icon--move" aria-hidden="true"><use href="assets/icons.svg#arrow-right"></use></svg></a>
@@ -81,8 +102,8 @@
   <footer class="footer">
     <div class="container footer__top">
       <div>
-        <a class="footer__logo" href="index.html"><img src="assets/img/logo.png" alt="FMZ Fire &amp; Safety Engineering" width="112" height="40" loading="lazy"><span class="brand__text"><span class="brand__l1">Fire Safety</span> <span class="brand__l2">Engineering</span></span></a>
-        <p>Fire-safety training, safety equipment and consultancy — helping organisations across Pakistan build safer workplaces since 2014.</p>
+        <a class="footer__logo" href="index.html"><img src="assets/img/logo.png" alt="FMZ" width="112" height="40" loading="lazy"><span class="brand__text"><span class="brand__l1">Fire Safety</span> <span class="brand__l2">Engineering</span></span></a>
+        <p>Fire safety training, fire extinguishers, safety equipment and audits — helping organisations across Karachi and Pakistan build safer workplaces since 2014.</p>
         <div class="social">
           <a data-social="facebook" href="https://www.facebook.com/p/FMZ-Fire-Safety-Engineering-100064305961947/" target="_blank" rel="noopener" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#facebook"></use></svg></a>
         <a data-social="linkedin" href="#" target="_blank" rel="noopener" aria-label="LinkedIn" hidden><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#linkedin"></use></svg></a>
@@ -92,22 +113,25 @@
         </div>
       </div>
       <div>
-        <h3>Company</h3>
+        <h3>Services</h3>
         <ul class="footer__links">
-          <li><a href="about.html">About us</a></li>
-          <li><a href="clients.html">Our clients</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="fire-safety-training-karachi.html">Fire Safety Training</a></li>
+          <li><a href="first-aid-training-karachi.html">First Aid &amp; CPR Training</a></li>
+          <li><a href="emergency-response-training-karachi.html">Emergency Response Training</a></li>
+          <li><a href="fire-extinguishers-karachi.html">Fire Extinguishers &amp; Safety Equipment</a></li>
+          <li><a href="fire-safety-audit-karachi.html">Fire Safety Audits</a></li>
         </ul>
       </div>
       <div>
-        <h3>Services</h3>
+        <h3>Company</h3>
         <ul class="footer__links">
-          <li><a href="training.html">Fire safety training</a></li>
-          <li><a href="training.html">First aid training</a></li>
-          <li><a href="training.html">Emergency response</a></li>
-          <li><a href="equipments.html">Safety equipment</a></li>
-          <li><a href="contact.html?subject=Safety%20audit%20request">Safety audits</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="training.html">Training courses</a></li>
+          <li><a href="equipments.html">Equipment catalogue</a></li>
+          <li><a href="clients.html">Our clients</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div>
@@ -122,8 +146,8 @@
     </div>
     <div class="footer__bottom">
       <div class="container">
-        <span>&copy; <span data-year>2026</span> FMZ Fire &amp; Safety Engineering. All rights reserved.</span>
-        <span>Karachi, Pakistan</span>
+        <span>&copy; <span data-year>2026</span> FMZ Fire &amp; Safety Engineering, Karachi. All rights reserved.</span>
+        <a href="sitemap.xml">Sitemap</a>
       </div>
     </div>
   </footer>

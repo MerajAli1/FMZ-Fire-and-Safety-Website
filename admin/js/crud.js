@@ -111,6 +111,7 @@ export function renderCollection(container, key) {
         </div>
         <div class="item__actions">
           <button class="icon-btn" data-action="edit" title="Edit" aria-label="Edit">${icon('pencil')}</button>
+          ${schema.viewUrl && !hidden ? `<a class="icon-btn" href="${esc(schema.viewUrl(it))}" target="_blank" rel="noopener" title="View on website" aria-label="View on website">${icon('external')}</a>` : ''}
           <button class="icon-btn" data-action="toggle-visible" title="${hidden ? 'Show on website' : 'Hide from website'}" aria-label="${hidden ? 'Show' : 'Hide'}">${icon(hidden ? 'eye-off' : 'eye')}</button>
           ${schema.featured ? `<button class="icon-btn ${it.featured ? 'is-on' : ''}" data-action="toggle-featured" title="${it.featured ? 'Remove from homepage' : 'Feature on homepage'}" aria-label="Toggle featured">${icon('star')}</button>` : ''}
           <span class="spacer"></span>
@@ -254,6 +255,14 @@ export function renderCollection(container, key) {
       if (f.isUploading()) return toast('Please wait for the image upload to finish', 'info');
       if (!f.validate()) return;
       const values = f.getValues();
+      if (schema.uniqueSlug) {
+        const clash = state.items.find((x) => x.slug === values.slug && x.id !== item?.id);
+        if (clash) {
+          toast(`Another ${schema.singular} (“${clash.title}”) already uses this web address. Please change it.`, 'error', 7000);
+          f.form.elements.slug?.focus();
+          return;
+        }
+      }
       setBusy(saveBtn, true);
       m.lock(true);
       try {
