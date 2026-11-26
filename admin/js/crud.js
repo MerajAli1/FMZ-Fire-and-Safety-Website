@@ -14,7 +14,7 @@ import {
 import { processAndUpload } from './upload.js';
 import { SCHEMAS } from './schemas.js';
 import { categoryLabel } from '../../js/lib/dom.js';
-import { BUILTIN_CLIENTS, DEFAULT_TRAININGS } from '../../js/data/defaults.js';
+import { BUILTIN_CLIENTS, DEFAULT_TRAININGS, DEFAULT_SLIDES } from '../../js/data/defaults.js';
 
 const sortItems = (items) => [...items].sort((a, b) => {
   const oa = Number.isFinite(a.order) ? a.order : Infinity;
@@ -162,6 +162,7 @@ export function renderCollection(container, key) {
   function renderNotice() {
     const box = $('[data-notice]', container);
     let html = '';
+    let extra = '';
     if (key === 'clients' && !state.settings.clientsSeeded) {
       html = `The website also shows <strong>${BUILTIN_CLIENTS.length} built-in client logos</strong> (Indus Motor, Meezan Bank, Nestlé…). Import them to edit, hide or reorder them here.
         <button class="btn btn--sm" data-action="import-clients">${icon('download', 'icon--sm')} Import built-in clients</button>`;
@@ -169,9 +170,15 @@ export function renderCollection(container, key) {
       html = `The Training page currently shows <strong>${DEFAULT_TRAININGS.length} default programs</strong>. Import them to start editing, or add your own (the defaults disappear once you add any).
         <button class="btn btn--sm" data-action="import-trainings">${icon('download', 'icon--sm')} Import default programs</button>`;
     } else if (key === 'slides' && state.loaded && !state.items.length) {
-      html = 'The homepage is showing the 3 built-in hero slides. As soon as you add a slide here, your slides replace them.';
+      html = `The homepage is currently showing these <strong>${DEFAULT_SLIDES.length} built-in slides</strong>. Import them to edit their text, swap images or reorder them, or add your own (the built-in slides disappear once you add any).
+        <button class="btn btn--sm" data-action="import-slides">${icon('download', 'icon--sm')} Import built-in slides</button>`;
+      extra = `<div class="builtin-slides">${DEFAULT_SLIDES.map((s, i) => `
+        <figure class="builtin-slide">
+          <img src="${esc(assetUrl(s.imageUrl.replace('.webp', '-960.webp')))}" alt="" loading="lazy">
+          <figcaption><span class="badge">Slide ${i + 1} · built-in</span><strong>${esc(s.title)}</strong><span>${esc(s.subtitle)}</span><em>Button: ${esc(s.ctaText)} → ${esc(s.ctaLink)}</em></figcaption>
+        </figure>`).join('')}</div>`;
     }
-    box.innerHTML = html ? `<div class="alert alert--info" style="align-items:center;flex-wrap:wrap">${icon('info')}<span style="flex:1;min-width:240px">${html}</span></div>` : '';
+    box.innerHTML = html ? `<div class="alert alert--info" style="align-items:center;flex-wrap:wrap">${icon('info')}<span style="flex:1;min-width:240px">${html}</span></div>${extra}` : '';
   }
 
   /* ---------- Data ---------- */
@@ -334,6 +341,19 @@ export function renderCollection(container, key) {
     }
   }
 
+  async function importSlides(btn) {
+    setBusy(btn, true, 'Importing…');
+    try {
+      const batch = writeBatch(db);
+      DEFAULT_SLIDES.forEach(({ id, ...s }) => batch.set(doc(colRef), { ...s, published: true, createdAt: serverTimestamp(), ...stamp() }));
+      await batch.commit();
+      toast(`Imported ${DEFAULT_SLIDES.length} slides`);
+    } catch (err) {
+      toast(friendlyError(err), 'error', 7000);
+      setBusy(btn, false);
+    }
+  }
+
   async function importTrainings(btn) {
     setBusy(btn, true, 'Importing…');
     try {
@@ -441,6 +461,7 @@ export function renderCollection(container, key) {
       case 'delete': remove([item.id]); break;
       case 'import-clients': importClients(btn); break;
       case 'import-trainings': importTrainings(btn); break;
+      case 'import-slides': importSlides(btn); break;
       case 'rename-category': renameCategory(); break;
       default: break;
     }

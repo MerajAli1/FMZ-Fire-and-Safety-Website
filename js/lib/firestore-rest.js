@@ -57,7 +57,9 @@ async function request(url, init) {
   if (!res.ok) {
     let msg = `Request failed (${res.status})`;
     try { msg = (await res.json()).error?.message || msg; } catch { /* ignore */ }
-    throw new Error(msg);
+    const err = new Error(msg);
+    err.status = res.status; // 403 = rejected by rules, 409 = document already exists
+    throw err;
   }
   return res.json();
 }
@@ -82,9 +84,10 @@ export async function getDocument(path) {
   return json ? decodeDoc(json) : null;
 }
 
-/** Create a document with an auto-generated id. */
-export async function createDocument(collection, data) {
-  const json = await request(`${BASE}/${collection}?${KEY}`, {
+/** Create a document (auto-generated id unless `id` is given; fails with 409 if it exists). */
+export async function createDocument(collection, data, id) {
+  const docId = id ? `&documentId=${encodeURIComponent(id)}` : '';
+  const json = await request(`${BASE}/${collection}?${KEY}${docId}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ fields: encodeFields(data) }),

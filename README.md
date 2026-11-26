@@ -45,6 +45,7 @@ Open `/admin/` (or `/admin/login.html`) and sign in with the admin account.
 | Training programs | Courses with icon, duration and key topics |
 | Hero slides | Homepage banner images and text |
 | Testimonials / Team | Optional homepage and About-page sections (hidden until content exists) |
+| Client reviews | Create private, expiring review links for clients; their reviews arrive here and you switch each one on or off for the website |
 | Settings | Phone, WhatsApp, email, address, hours, social links, homepage figures, announcement bar, Google Map, password reset |
 
 ## First-time setup (important)
@@ -71,6 +72,20 @@ Open `/admin/` (or `/admin/login.html`) and sign in with the admin account.
   resubmit it in Google Search Console.
 - If you change the domain, update `SITE_URL` in `js/config.js`, the URLs in `sitemap.xml` / `robots.txt`,
   and the canonical/OG tags in the HTML pages.
+
+## Client review links
+
+1. Dashboard → **Client reviews** → **Create review link**. Optionally enter the client's name and a short message,
+   pick when the link expires (24 hours to 30 days, or a custom date/time) and whether it accepts one review or several.
+2. Send the link by WhatsApp or email straight from the dialog (or copy it). The client opens `review.html?t=…`,
+   sees how long the link is valid, and submits their name, rating, review and an optional photo.
+3. The review appears under **Client reviews → Submissions** (with a badge in the sidebar). Turn on **On website** to
+   publish it as a testimonial on the homepage, or leave it hidden. Edit the wording later under **Testimonials**.
+4. Expired, disabled or already-used links show a friendly message instead of the form. You can change the expiry or
+   switch a link off at any time under **Review links**.
+
+The links rely on the `reviewLinks` and `reviewSubmissions` rules in `firestore.rules` — **publish the rules again**
+after updating, otherwise links will show as "not valid" and submissions will be rejected.
 
 ## Adding another admin
 

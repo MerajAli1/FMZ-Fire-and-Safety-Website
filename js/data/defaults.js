@@ -51,3 +51,28 @@ export const DEFAULT_TRAININGS = [
     features: ['Crisis management', 'Emergency planning', 'Team coordination'],
   },
 ].map((t, i) => ({ id: `default-${i}`, order: i, ...t }));
+
+/** The three hero slides hard-coded in index.html (shown until the admin adds slides). */
+export const DEFAULT_SLIDES = [
+  {
+    imageUrl: 'assets/img/hero-1.webp',
+    title: 'Protecting people, property & peace of mind',
+    subtitle: 'Certified fire-safety training, quality safety equipment and expert consultancy for businesses across Pakistan.',
+    ctaText: 'Get a free quote',
+    ctaLink: 'contact.html',
+  },
+  {
+    imageUrl: 'assets/img/hero-2.webp',
+    title: 'Professional safety training that sticks',
+    subtitle: 'Hands-on fire safety, first aid and emergency response courses delivered by certified trainers — at your site or ours.',
+    ctaText: 'View training programs',
+    ctaLink: 'training.html',
+  },
+  {
+    imageUrl: 'assets/img/hero-3.webp',
+    title: 'Safety equipment you can depend on',
+    subtitle: 'Fire extinguishers, PPE, first-aid and emergency equipment for every type of workplace.',
+    ctaText: 'Browse equipment',
+    ctaLink: 'equipments.html',
+  },
+].map((s, i) => ({ id: `builtin-slide-${i}`, order: i + 1, ...s }));

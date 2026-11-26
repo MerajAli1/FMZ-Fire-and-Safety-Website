@@ -55,6 +55,44 @@ service cloud.firestore {
     match /settings/{id}     { allow read: if true; allow write: if isAdmin(); }
     match /posts/{id}        { allow read: if true; allow write: if isAdmin(); }
 
+    // ---------- Client review links ----------
+    // The admin creates a secret link per client. Anyone holding the link can read
+    // that one link (to see its expiry) but nobody else can list them.
+    match /reviewLinks/{token} {
+      allow get: if true;
+      allow list, write: if isAdmin();
+    }
+
+    // Reviews submitted through a link. Accepted only while the link is active and
+    // not expired. Single-use links must use the link token as the document id,
+    // so a second submission with the same link is rejected.
+    match /reviewSubmissions/{id} {
+      function linkPath() { return /databases/$(database)/documents/reviewLinks/$(data().linkId); }
+
+      allow create: if isAdmin() || (
+        data().keys().hasOnly(['linkId', 'name', 'company', 'role', 'email', 'rating', 'quote', 'imageUrl', 'consent', 'status', 'createdAt'])
+        && data().keys().hasAll(['linkId', 'name', 'rating', 'quote', 'consent', 'status', 'createdAt'])
+        && strField('linkId', 16, 64)
+        && exists(linkPath())
+        && get(linkPath()).data.active == true
+        && request.time < get(linkPath()).data.expiresAt
+        && (get(linkPath()).data.singleUse != true || id == data().linkId)
+        && strField('name', 2, 80)
+        && optionalStr('company', 100)
+        && optionalStr('role', 80)
+        && optionalStr('email', 150)
+        && data().rating is int && data().rating >= 1 && data().rating <= 5
+        && strField('quote', 10, 600)
+        && (!('imageUrl' in data()) || (
+          strField('imageUrl', 20, 400)
+          && data().imageUrl.matches('^https://res[.]cloudinary[.]com/dfyvwloys/.*')))
+        && data().consent == true
+        && data().status == 'new'
+        && data().createdAt is timestamp
+      );
+      allow read, update, delete: if isAdmin();
+    }
+
     // Everything else is closed.
     match /{document=**} {
       allow read, write: if false;
