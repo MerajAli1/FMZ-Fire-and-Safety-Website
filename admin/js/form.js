@@ -1,6 +1,7 @@
 /** Schema-driven form builder used by the content manager. */
 import { esc, icon, assetUrl, toast } from './ui.js';
 import { processAndUpload } from './upload.js';
+import { editImage, isEditable, fileFromUrl } from './image-editor.js';
 import { categoryLabel, slugify } from '../../js/lib/dom.js';
 import { renderMarkdown, markdownToText, readingMinutes } from '../../js/lib/markdown.js';
 import { SITE_URL } from '../../js/config.js';
@@ -100,7 +101,10 @@ function renderField(f, value, ctx = {}) {
           <input type="hidden" name="${f.name}" value="${esc(v)}">
           <div class="image-preview" ${v ? '' : 'hidden'}>
             <img alt="Preview" src="${esc(assetUrl(v, 900))}">
-            <button type="button" class="icon-btn icon-btn--danger image-preview__remove" data-remove-image aria-label="Remove image">${icon('trash')}</button>
+            <div class="image-preview__actions">
+              <button type="button" class="icon-btn" data-edit-image title="Crop, rotate or adjust" aria-label="Edit image">${icon('crop')}</button>
+              <button type="button" class="icon-btn icon-btn--danger" data-remove-image title="Remove image" aria-label="Remove image">${icon('trash')}</button>
+            </div>
           </div>
           <div class="dropzone" ${v ? 'hidden' : ''}>
             <input type="file" accept="image/*" aria-label="Choose image">
@@ -217,8 +221,10 @@ function setupMarkdown(box, state) {
   });
 
   box.querySelector('[data-md-image]').addEventListener('change', async (e) => {
-    const file = e.target.files[0];
+    const picked = e.target.files[0];
     e.target.value = '';
+    if (!picked) return;
+    const file = isEditable(picked) ? await editImage(picked, { title: 'Edit article image' }) : picked;
     if (!file) return;
     const suggested = file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
     const alt = (prompt('Short description of the image (helps Google and visually impaired readers):', suggested) || '').replace(/[[\]]/g, '');
@@ -294,8 +300,12 @@ function setupImageField(root, f, state) {
     drop.hidden = Boolean(url);
   };
 
-  async function handle(file) {
-    if (!file) return;
+  async function handle(picked, { existing = false } = {}) {
+    if (!picked) return;
+    // Let the admin crop / rotate / adjust before uploading
+    const file = isEditable(picked) ? await editImage(picked, { aspect: f.aspect, title: `Edit ${f.label.toLowerCase()}` }) : picked;
+    fileInput.value = '';
+    if (!file || (existing && file === picked)) return; // cancelled, or "use original" on an uploaded image
     const localUrl = URL.createObjectURL(file);
     previewImg.src = localUrl;
     preview.hidden = false;
@@ -323,6 +333,21 @@ function setupImageField(root, f, state) {
   ['dragenter', 'dragover'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('is-over'); }));
   ['dragleave', 'drop'].forEach((ev) => drop.addEventListener(ev, () => drop.classList.remove('is-over')));
   drop.addEventListener('drop', (e) => { e.preventDefault(); handle(e.dataTransfer.files[0]); });
+  root.querySelector('[data-edit-image]').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    const current = hidden.value;
+    if (!current) return;
+    btn.disabled = true;
+    try {
+      const file = await fileFromUrl(assetUrl(current), f.name);
+      if (!isEditable(file)) { toast('This image type (SVG/GIF) cannot be edited here.', 'info'); return; }
+      await handle(file, { existing: true });
+    } catch (err) {
+      toast(`${err.message} Download the image and upload it again to edit it.`, 'error', 7000);
+    } finally {
+      btn.disabled = false;
+    }
+  });
   root.querySelector('[data-remove-image]').addEventListener('click', () => { setValue(''); fileInput.value = ''; });
   root.querySelector('[data-url-toggle]').addEventListener('click', () => { urlInput.hidden = !urlInput.hidden; if (!urlInput.hidden) urlInput.focus(); });
   urlInput.addEventListener('change', () => {

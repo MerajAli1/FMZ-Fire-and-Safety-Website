@@ -321,6 +321,8 @@ dialog.modal[open] { animation: pop .2s ease; display: flex; flex-direction: col
 
 /* ---------- Toasts ---------- */
 .toasts { position: fixed; right: 18px; bottom: 18px; z-index: 1000; display: grid; gap: 8px; width: min(360px, calc(100vw - 36px)); }
+.toasts[popover] { inset: auto 18px 18px auto; margin: 0; padding: 0; border: 0; background: transparent; overflow: visible; color: inherit; pointer-events: none; }
+.toasts[popover] .toast { pointer-events: auto; }
 .toast {
   display: flex; gap: .7rem; align-items: flex-start; padding: 12px 14px; border-radius: 10px; background: var(--ink); color: #fff;
   box-shadow: var(--shadow-lg); font-size: .88rem; animation: toastIn .25s ease;
@@ -433,4 +435,39 @@ dialog.modal[open] { animation: pop .2s ease; display: flex; flex-direction: col
   .review-item { padding: 14px; gap: 10px; }
   .review-item__side .badge { display: none; }
   .share-link { flex-direction: column; }
+}
+
+/* ---------- Image editor (crop / rotate / adjust before upload) ---------- */
+dialog.modal--editor { width: min(980px, calc(100vw - 24px)); }
+.img-editor { display: grid; gap: 14px; }
+.img-editor__stage {
+  --img-filter: none;
+  height: min(52vh, 500px); min-height: 240px; border-radius: 12px; overflow: hidden; background: #0f172a;
+}
+.img-editor__stage > img { display: block; max-width: 100%; }
+.img-editor__stage .cropper-canvas img,
+.img-editor__stage .cropper-view-box img { filter: var(--img-filter); }
+.img-editor__stage .cropper-view-box { outline-color: var(--brand); outline-width: 2px; }
+.img-editor__stage .cropper-line, .img-editor__stage .cropper-point { background-color: var(--brand); }
+.img-editor__stage .cropper-point.point-se { width: 10px; height: 10px; }
+.img-editor__tabs { justify-self: start; }
+.img-editor__panel { display: grid; gap: 12px; }
+.img-editor__panel[hidden] { display: none; }
+.img-editor__group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.img-editor__group .icon-btn { border: 1px solid var(--line); background: #fff; }
+.chip {
+  border: 1px solid var(--line); background: #fff; color: var(--text); border-radius: 999px;
+  padding: .34rem .8rem; font-size: .8rem; font-weight: 600; cursor: pointer; transition: background-color .15s, border-color .15s, color .15s;
+}
+.chip:hover { border-color: #cbd5e1; background: #f8fafc; }
+.chip.is-active { background: var(--brand); border-color: var(--brand); color: #fff; }
+.img-editor__slider { display: grid; grid-template-columns: 100px 1fr 44px; align-items: center; gap: 12px; font-size: .86rem; font-weight: 600; color: var(--ink); }
+.img-editor__slider input[type=range] { width: 100%; accent-color: var(--brand); cursor: pointer; }
+.img-editor__slider output { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 600; }
+.img-editor__hint { margin: 0; font-size: .78rem; color: var(--muted); }
+.image-preview__actions { position: absolute; top: 8px; right: 8px; display: flex; gap: 6px; }
+.image-preview__actions .icon-btn { background: rgba(255,255,255,.92); box-shadow: 0 1px 3px rgba(15,23,42,.18); }
+@media (max-width: 600px) {
+  .img-editor__stage { height: 46vh; }
+  .img-editor__slider { grid-template-columns: 78px 1fr 36px; gap: 8px; }
 }

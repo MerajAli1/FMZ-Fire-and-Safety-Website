@@ -58,6 +58,16 @@ export function toast(message, type = 'success', ms = 3500) {
     toastRoot.setAttribute('aria-live', 'polite');
     document.body.appendChild(toastRoot);
   }
+  // Open <dialog>s sit in the browser's top layer, above any z-index. Keep toasts
+  // visible over them by showing the container as a popover (also top layer).
+  if (typeof toastRoot.showPopover === 'function') {
+    toastRoot.setAttribute('popover', 'manual');
+    if (toastRoot.matches(':popover-open')) toastRoot.hidePopover();
+    toastRoot.showPopover();
+  } else {
+    const dlg = Array.from(document.querySelectorAll('dialog[open]')).pop();
+    (dlg || document.body).appendChild(toastRoot);
+  }
   const el = document.createElement('div');
   el.className = `toast toast--${type}`;
   const ic = { success: 'check-circle', error: 'alert', info: 'info' }[type] || 'info';

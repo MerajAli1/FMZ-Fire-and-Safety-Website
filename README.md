@@ -30,6 +30,9 @@ firestore.rules                                       Security rules — publish
 - Photos were converted to WebP with responsive sizes (the hero image dropped from 630 KB to 60–150 KB).
 - Cloudinary images are served with `f_auto,q_auto` and width limits automatically.
 - Admin uploads are resized and compressed in the browser before upload.
+- Before any photo is uploaded, the admin can crop it (free, original, 16:9, 4:3, square, 3:4), rotate, straighten,
+  flip, zoom and adjust brightness / contrast / saturation / warmth (`admin/js/image-editor.js`, Cropper.js from cdnjs,
+  loaded only when the editor opens). Already-uploaded photos can be re-edited with the crop button on the preview.
 
 ## Admin dashboard
 

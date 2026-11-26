@@ -34,7 +34,7 @@ export const SCHEMAS = {
         name: 'slug', label: 'Web address', type: 'slug', from: 'title', required: true, full: true, prefix: 'fmzfiresafety.com/article.html?slug=',
         help: 'Created from the title automatically. Keep it short, lowercase and with keywords. Avoid changing it after publishing.',
       },
-      { name: 'coverImage', label: 'Cover image', type: 'image', maxWidth: 1600, full: true, hint: 'Shown at the top of the article and when shared on WhatsApp/Facebook. Landscape images work best.' },
+      { name: 'coverImage', label: 'Cover image', type: 'image', aspect: '16:9', maxWidth: 1600, full: true, hint: 'Shown at the top of the article and when shared on WhatsApp/Facebook. Landscape images work best.' },
       {
         name: 'category', label: 'Category', type: 'category', required: true,
         suggestions: ['fire-safety', 'workplace-safety', 'first-aid', 'equipment', 'compliance', 'news'],
@@ -172,7 +172,7 @@ export const SCHEMAS = {
     searchFields: ['name', 'role'],
     publicPage: '../about.html#team-section',
     fields: [
-      { name: 'imageUrl', label: 'Photo', type: 'image', required: true, maxWidth: 900, full: true, hint: 'Square photos work best.' },
+      { name: 'imageUrl', label: 'Photo', type: 'image', aspect: '1:1', required: true, maxWidth: 900, full: true, hint: 'Square photos work best.' },
       { name: 'name', label: 'Full name', type: 'text', required: true, max: 80 },
       { name: 'role', label: 'Job title', type: 'text', required: true, max: 80 },
       { name: 'linkedin', label: 'LinkedIn URL', type: 'url', full: true },
@@ -200,7 +200,7 @@ export const SCHEMAS = {
       { name: 'role', label: 'Job title', type: 'text', max: 80 },
       { name: 'rating', label: 'Rating', type: 'select', options: [['5', '★★★★★ (5)'], ['4', '★★★★ (4)'], ['3', '★★★ (3)'], ['2', '★★ (2)'], ['1', '★ (1)']], default: '5', number: true },
       { name: 'quote', label: 'Testimonial', type: 'textarea', required: true, max: 600, full: true, rows: 4 },
-      { name: 'imageUrl', label: 'Photo (optional)', type: 'image', maxWidth: 300, full: true },
+      { name: 'imageUrl', label: 'Photo (optional)', type: 'image', aspect: '1:1', maxWidth: 300, full: true },
       visibility,
       order,
     ],
@@ -219,7 +219,7 @@ export const SCHEMAS = {
     searchFields: ['title', 'subtitle'],
     publicPage: '../index.html',
     fields: [
-      { name: 'imageUrl', label: 'Background image', type: 'image', required: true, maxWidth: 2400, full: true, hint: 'Landscape, at least 1600px wide. Text sits on the left, so keep the subject on the right.' },
+      { name: 'imageUrl', label: 'Background image', type: 'image', aspect: '16:9', required: true, maxWidth: 2400, full: true, hint: 'Landscape, at least 1600px wide. Text sits on the left, so keep the subject on the right.' },
       { name: 'title', label: 'Headline', type: 'text', required: true, max: 90, full: true },
       { name: 'subtitle', label: 'Supporting text', type: 'textarea', max: 220, full: true, rows: 2 },
       { name: 'ctaText', label: 'Button text', type: 'text', max: 30, placeholder: 'Get a free quote' },
